@@ -17,7 +17,14 @@ namespace GameZenCritic.Infrastructure.Data
             builder.Entity<GenreGame>().HasKey(gg => new { gg.GenreId, gg.GameId });
             builder.Entity<PlayerGameReview>().HasKey(pgr => new { pgr.PlayerId, pgr.GameId });
 
+            builder.Entity<GamePlatform>().HasOne(gp=>gp.Game).WithMany(g=>g.GamesPlatforms).OnDelete(DeleteBehavior.NoAction);
+            builder.Entity<GamePlatform>().HasOne(gp=>gp.Platform).WithMany(p=>p.GamesPlatforms).OnDelete(DeleteBehavior.NoAction);
 
+            builder.Entity<GenreGame>().HasOne(gg => gg.Game).WithMany(g => g.GenresGames).OnDelete(DeleteBehavior.NoAction);
+            builder.Entity<GenreGame>().HasOne(gg => gg.Genre).WithMany(p => p.GenresGames).OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<PlayerGameReview>().HasOne(pgr=>pgr.Game).WithMany(g=>g.PlayersGamesReviews).OnDelete(DeleteBehavior.NoAction);
+            builder.Entity<PlayerGameReview>().HasOne(pgr=>pgr.Player).WithMany(g=>g.PlayersGamesReviews).OnDelete(DeleteBehavior.NoAction);
         }
 
         public DbSet<Developer> Developer { get; set; } = null!;
