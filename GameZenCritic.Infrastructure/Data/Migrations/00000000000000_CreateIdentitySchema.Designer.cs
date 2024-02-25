@@ -9,7 +9,7 @@ using System;
 
 namespace GameZenCritic.Infrastructure.Data.Migrations
 {
-    [DbContext(typeof(GameZenDb))]
+    [DbContext(typeof(GameZenDbContext))]
     [Migration("00000000000000_CreateIdentitySchema")]
     partial class CreateIdentitySchema
     {

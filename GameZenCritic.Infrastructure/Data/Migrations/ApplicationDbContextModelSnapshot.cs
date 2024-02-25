@@ -7,7 +7,7 @@ using System;
 
 namespace GameZenCritic.Infrastructure.Data.Migrations
 {
-    [DbContext(typeof(GameZenDb))]
+    [DbContext(typeof(GameZenDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

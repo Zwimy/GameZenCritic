@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GameZenCritic.Infrastructure.Data
 {
-    public class GameZenDb : IdentityDbContext
+    public class GameZenDbContext : IdentityDbContext
     {
-        public GameZenDb(DbContextOptions<GameZenDb> options)
+        public GameZenDbContext(DbContextOptions<GameZenDbContext> options)
             : base(options)
         {
         }
