@@ -12,5 +12,7 @@ namespace GameZenCritic.Infrastructure.Data.Models
         public string Name { get; set; } = string.Empty;
 
         public virtual ICollection<Game> Games { get; set; } = new List<Game>();
+
+        public bool IsDeleted { get; set; } = false;
     }
 }

@@ -30,5 +30,7 @@ namespace GameZenCritic.Infrastructure.Data.Models
         [Required]
         [Range(0,10)]
         public int Score { get; set; }
+
+        public bool IsDeleted { get; set; } = false;
     }
 }

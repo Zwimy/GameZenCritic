@@ -27,5 +27,7 @@ namespace GameZenCritic.Infrastructure.Data.Models
         }
 
         public virtual ICollection<PlayerGameReview> PlayersGamesReviews { get; set; } = new List<PlayerGameReview>();
+
+        public bool IsDeleted { get; set; } = false;
     }
 }

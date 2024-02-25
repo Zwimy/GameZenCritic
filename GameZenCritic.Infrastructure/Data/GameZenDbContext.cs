@@ -13,6 +13,10 @@ namespace GameZenCritic.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<GamePlatform>().HasKey(gp => new { gp.PlatformId, gp.GameId });
+            builder.Entity<GenreGame>().HasKey(gg => new { gg.GenreId, gg.GameId });
+            builder.Entity<PlayerGameReview>().HasKey(pgr => new { pgr.PlayerId, pgr.GameId });
+
 
         }
 

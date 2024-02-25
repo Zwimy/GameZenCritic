@@ -36,5 +36,7 @@ namespace GameZenCritic.Infrastructure.Data.Models
         [Comment("Platform identifier")]
         [ForeignKey(nameof(PlatformId))]
         public Platform Platform { get; set; } = null!;
+
+        public bool IsDeleted { get; set; } = false;
     }
 }

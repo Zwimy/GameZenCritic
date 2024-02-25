@@ -14,5 +14,7 @@ namespace GameZenCritic.Infrastructure.Data.Models
         public Guid GameId { get; set; }
         [ForeignKey(nameof(GameId))]
         public Game Game { get; set; } = null!;
+
+        public bool IsDeleted { get; set; } = false;
     }
 }

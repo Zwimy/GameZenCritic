@@ -33,5 +33,7 @@ namespace GameZenCritic.Infrastructure.Data.Models
         /// Navigational property for games
         /// </summary>
         public virtual ICollection<GamePlatform> GamesPlatforms { get; set; } = new List<GamePlatform>();
+
+        public bool IsDeleted { get; set; } = false;
     }
 }
