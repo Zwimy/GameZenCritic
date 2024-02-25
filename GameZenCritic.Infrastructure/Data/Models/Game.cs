@@ -61,5 +61,7 @@ namespace GameZenCritic.Infrastructure.Data.Models
 
         [ForeignKey(nameof(PublisherId))]
         public Publisher Publisher { get; set; } = null!;
+
+        public virtual ICollection<News> News { get; set; } = new List<News>();
     }
 }
