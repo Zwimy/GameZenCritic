@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,7 +41,12 @@ namespace GameZenCritic.Infrastructure.Data.Models
 
         public virtual ICollection<GamePlatform> GamesPlatforms { get; set; } = new List<GamePlatform>();
 
+        [Required]
+        [Range(typeof(decimal), "0", "10")]
+        [Column(TypeName = "decimal(4,2)")]
+        public decimal TotalScore { get; set; } = 0m;
 
+        public virtual ICollection<PlayerGameReview> PlayersGamesReviews { get; set; } = new List<PlayerGameReview>();
 
 
     }

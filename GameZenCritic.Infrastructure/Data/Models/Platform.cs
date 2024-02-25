@@ -28,5 +28,10 @@ namespace GameZenCritic.Infrastructure.Data.Models
         [Required]
         [MaxLength(200)]
         public string Name { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Navigational property for games
+        /// </summary>
+        public virtual ICollection<GamePlatform> GamesPlatforms { get; set; } = new List<GamePlatform>();
     }
 }
