@@ -39,16 +39,10 @@ namespace GameZenCritic.Infrastructure.Data.Models
         [MaxLength(500)]
         public string AgeRatingPicture { get; set; } = string.Empty;
 
-        public virtual ICollection<GamePlatform> GamesPlatforms { get; set; } = new List<GamePlatform>();
-
         [Required]
         [Range(typeof(decimal), "0", "10")]
         [Column(TypeName = "decimal(4,2)")]
         public decimal TotalScore { get; set; } = 0m;
-
-        public virtual ICollection<PlayerGameReview> PlayersGamesReviews { get; set; } = new List<PlayerGameReview>();
-
-        public virtual ICollection<GenreGame> GenresGames { get; set; } = new List<GenreGame>();
 
         [Required]
         public int DeveloperId { get; set; }
@@ -63,5 +57,11 @@ namespace GameZenCritic.Infrastructure.Data.Models
         public Publisher Publisher { get; set; } = null!;
 
         public virtual ICollection<News> News { get; set; } = new List<News>();
+
+        public virtual ICollection<GamePlatform> GamesPlatforms { get; set; } = new List<GamePlatform>();
+
+        public virtual ICollection<PlayerGameReview> PlayersGamesReviews { get; set; } = new List<PlayerGameReview>();
+
+        public virtual ICollection<GenreGame> GenresGames { get; set; } = new List<GenreGame>();
     }
 }
