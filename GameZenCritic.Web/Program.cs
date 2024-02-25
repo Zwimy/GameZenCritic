@@ -1,4 +1,4 @@
-using GameZenCritic.Web.Data;
+
 using GameZenCritic.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
