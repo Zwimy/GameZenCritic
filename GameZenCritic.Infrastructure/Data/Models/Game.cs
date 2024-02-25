@@ -48,6 +48,18 @@ namespace GameZenCritic.Infrastructure.Data.Models
 
         public virtual ICollection<PlayerGameReview> PlayersGamesReviews { get; set; } = new List<PlayerGameReview>();
 
+        public virtual ICollection<GenreGame> GenresGames { get; set; } = new List<GenreGame>();
 
+        [Required]
+        public int DeveloperId { get; set; }
+
+        [ForeignKey(nameof(DeveloperId))]
+        public Developer Developer { get; set; } = null!;
+
+        [Required]
+        public int PublisherId { get; set; }
+
+        [ForeignKey(nameof(PublisherId))]
+        public Publisher Publisher { get; set; } = null!;
     }
 }
