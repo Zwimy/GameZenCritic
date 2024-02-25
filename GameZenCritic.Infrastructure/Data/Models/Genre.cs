@@ -15,5 +15,7 @@ namespace GameZenCritic.Infrastructure.Data.Models
         [Required]
         [StringLength(100)]
         public string Name { get; set; } = string.Empty;
+
+        public virtual ICollection<GenreGame> GenresGames { get; set; } = new List<GenreGame>();
     }
 }
