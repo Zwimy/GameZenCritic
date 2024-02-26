@@ -17,6 +17,9 @@ namespace GameZenCritic.Infrastructure.Data.Seed
         public Genre[] genres { get; set; } = null!;
         public Developer[] developers { get; set; } = null!;
         public Game[] games { get; set; } = null!;
+        public GamePlatform[] gamesPlatforms { get; set; } = null!;
+        public GenreGame[] genresGames { get; set; } = null!;
+
 
         public SeedData()
         {
@@ -26,6 +29,8 @@ namespace GameZenCritic.Infrastructure.Data.Seed
             SeedGenres();
             SeedDevelopers();
             SeedGames();
+            SeedGamesPlatforms();
+            SeedGenresGames();
         }
 
         private void SeedPublishers()
@@ -259,6 +264,95 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                     DeveloperId = 5,
                     PublisherId = 5,
                 }
+            };
+        }
+
+        private void SeedGamesPlatforms()
+        {
+            gamesPlatforms = new GamePlatform[]
+            {
+                new GamePlatform()
+                {
+                    GameId = Guid.Parse("f0843ecf-38cf-4a72-a383-2b1c3c0d8d02"),
+                    PlatformId = 1
+                },
+
+                new GamePlatform()
+                {
+                    GameId = Guid.Parse("f0843ecf-38cf-4a72-a383-2b1c3c0d8d02"),
+                    PlatformId = 2
+                },
+
+                new GamePlatform()
+                {
+                    GameId = Guid.Parse("b16e5fc7-1fcd-48e8-ae77-6cf139b0b647"),
+                    PlatformId = 1
+                },
+
+                new GamePlatform()
+                {
+                    GameId = Guid.Parse("b16e5fc7-1fcd-48e8-ae77-6cf139b0b647"),
+                    PlatformId = 3
+                },
+
+                new GamePlatform()
+                {
+                    GameId = Guid.Parse("b16e5fc7-1fcd-48e8-ae77-6cf139b0b647"),
+                    PlatformId = 4
+                },
+
+                new GamePlatform()
+                {
+                    GameId = Guid.Parse("7f1e9d4b-53a8-4e63-9d23-31f48a11c41e"),
+                    PlatformId = 1
+                },
+
+                new GamePlatform()
+                {
+                    GameId = Guid.Parse("7f1e9d4b-53a8-4e63-9d23-31f48a11c41e"),
+                    PlatformId = 3
+                },
+
+                new GamePlatform()
+                {
+                    GameId = Guid.Parse("7f1e9d4b-53a8-4e63-9d23-31f48a11c41e"),
+                    PlatformId = 4
+                },
+
+
+            };
+        }
+
+        private void SeedGenresGames()
+        {
+            genresGames = new GenreGame[]
+            {
+                new GenreGame()
+                {
+                    GameId = Guid.Parse("f0843ecf-38cf-4a72-a383-2b1c3c0d8d02"),
+                    GenreId = 1
+                },
+                new GenreGame()
+                {
+                    GameId = Guid.Parse("b16e5fc7-1fcd-48e8-ae77-6cf139b0b647"),
+                    GenreId = 2
+                },
+                new GenreGame()
+                {
+                    GameId = Guid.Parse("7f1e9d4b-53a8-4e63-9d23-31f48a11c41e"),
+                    GenreId = 3
+                },
+                new GenreGame()
+                {
+                    GameId = Guid.Parse("3e33c5e3-ec4f-4b31-93b0-686fd2da6314"),
+                    GenreId = 3
+                },
+                new GenreGame()
+                {
+                    GameId = Guid.Parse("a8bf3a6e-509d-497b-92a7-f2c4d0f81b5b"),
+                    GenreId = 4
+                },
+
             };
         }
     }
