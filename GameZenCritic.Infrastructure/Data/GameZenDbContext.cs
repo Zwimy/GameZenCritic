@@ -31,28 +31,23 @@ namespace GameZenCritic.Infrastructure.Data
             builder.Entity<PlayerGameReview>().HasOne(pgr=>pgr.Game).WithMany(g=>g.PlayersGamesReviews).OnDelete(DeleteBehavior.NoAction);
             builder.Entity<PlayerGameReview>().HasOne(pgr=>pgr.Player).WithMany(g=>g.PlayersGamesReviews).OnDelete(DeleteBehavior.NoAction);
 
-            builder.ApplyConfiguration(new PublisherConfiguration());
-            builder.ApplyConfiguration(new PlayerConfiguration());
-            builder.ApplyConfiguration(new PlatformConfiguration());
-            builder.ApplyConfiguration(new GenreConfiguration());
-            builder.ApplyConfiguration(new DeveloperConfiguration());
-            builder.ApplyConfiguration(new GameConfiguration());
-            builder.ApplyConfiguration(new GamePlatformConfiguration());
-            builder.ApplyConfiguration(new GenreGameConfiguration());
-            builder.ApplyConfiguration(new NewsConfiguration());
-            builder.ApplyConfiguration(new PlayerGameReviewConfiguration());
+            
+            //builder.ApplyConfiguration(new PlayerConfiguration());
+            //builder.ApplyConfiguration(new PlatformConfiguration());
+            //builder.ApplyConfiguration(new GenreConfiguration());
+            //builder.ApplyConfiguration(new GameConfiguration());
+            //builder.ApplyConfiguration(new GamePlatformConfiguration());
+            //builder.ApplyConfiguration(new GenreGameConfiguration());
+            //builder.ApplyConfiguration(new PlayerGameReviewConfiguration());
 
             base.OnModelCreating(builder);
         }
 
-        public DbSet<Developer> Developer { get; set; } = null!;
         public DbSet<Game> Game { get; set; } = null!;
         public DbSet<GamePlatform> GamesPlatforms { get; set; } = null!;
         public DbSet<Genre> Genres { get; set; } = null!;
         public DbSet<GenreGame> GenresGames { get; set; } = null!;
-        public DbSet<News> News { get; set; } = null!;
         public DbSet<Platform> Platform { get; set; } = null!;
         public DbSet<PlayerGameReview> PlayersGamesReviews { get; set; } = null!;
-        public DbSet<Publisher> Publisher { get; set; } = null!;
     }
 }

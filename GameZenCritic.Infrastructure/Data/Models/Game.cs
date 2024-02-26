@@ -78,35 +78,12 @@ namespace GameZenCritic.Infrastructure.Data.Models
         public decimal TotalScore { get; set; } = 0m;
 
         /// <summary>
-        /// The game developer identifier
+        /// The game developer company
         /// </summary>
-        [Comment("The game developer identifier")]
+        [Comment("The game developer")]
+        [StringLength(DataConstants.DeveloperNameMaxLength)]
         [Required]
-        public int DeveloperId { get; set; }
-
-        /// <summary>
-        /// Foreign key and navigational property to Developer
-        /// </summary>
-        [ForeignKey(nameof(DeveloperId))]
-        public Developer Developer { get; set; } = null!;
-
-        /// <summary>
-        /// The game publisher identifier
-        /// </summary>
-        [Comment("The game publisher identifier")]
-        [Required]
-        public int PublisherId { get; set; }
-
-        /// <summary>
-        /// Foreign key and navigational property to Publisher
-        /// </summary>
-        [ForeignKey(nameof(PublisherId))]
-        public Publisher Publisher { get; set; } = null!;
-
-        /// <summary>
-        /// Navigational property and collection to News
-        /// </summary>
-        public virtual ICollection<News> News { get; set; } = new List<News>();
+        public string Developer { get; set; } = string.Empty;
 
         /// <summary>
         /// Navigational property and collection to GamesPlatforms

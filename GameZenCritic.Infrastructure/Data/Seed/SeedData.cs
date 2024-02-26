@@ -14,29 +14,26 @@ namespace GameZenCritic.Infrastructure.Data.Seed
     /// </summary>
     internal class SeedData
     {
-        public Publisher[] publishers { get; set; } = null!;
+        
         public Player[] players { get; set; } = null!;
         public Platform[] platforms { get; set; } = null!;
         public Genre[] genres { get; set; } = null!;
-        public Developer[] developers { get; set; } = null!;
+        
         public Game[] games { get; set; } = null!;
         public GamePlatform[] gamesPlatforms { get; set; } = null!;
         public GenreGame[] genresGames { get; set; } = null!;
-        public News[] news { get; set; } = null!;
+        
         public PlayerGameReview[] playersGamesReviews { get; set; } = null!;
 
 
         public SeedData()
         {
-            SeedPublishers();
             SeedPlayers();
             SeedPlatforms();
             SeedGenres();
-            SeedDevelopers();
             SeedGames();
             SeedGamesPlatforms();
             SeedGenresGames();
-            SeedNews();
             SeedPlayersGamesReviews();
         }
 
@@ -62,38 +59,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
             };
         }
 
-        private void SeedPublishers()
-        {
-            publishers = new Publisher[] 
-            {
-                new Publisher()
-                {
-                    Id = 1,
-                    Name = "Microsoft Game Studios",
-                },
-                new Publisher()
-                {
-                    Id = 2,
-                    Name = "Bandai Namco Games",
-                },
-                new Publisher()
-                {
-                    Id = 3,
-                    Name = "Larian Studios Gamess",
-                },
-                new Publisher()
-                {
-                    Id = 4,
-                    Name = "CD Projekt Red Studio",
-                },
-                new Publisher()
-                {
-                    Id = 5,
-                    Name = "PlayStation Studios",
-                },
-
-            };
-        }
+        
 
         private void SeedPlayers()
         {
@@ -192,37 +158,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
             };
         }
 
-        private void SeedDevelopers()
-        {
-            developers = new Developer[]
-            {
-                new Developer()
-                {
-                    Id= 1,
-                    Name = "Epic Games"
-                },
-                new Developer()
-                {
-                    Id= 2,
-                    Name = "From Software"
-                },
-                new Developer()
-                {
-                    Id= 3,
-                    Name = "Larian Studios Games"
-                },
-                new Developer()
-                {
-                    Id= 4,
-                    Name = "CD Projekt Red Studio"
-                },
-                new Developer()
-                {
-                    Id= 5,
-                    Name = "SCE Santa Monica"
-                },
-            };
-        }
+        
 
         private void SeedGames()
         {
@@ -238,8 +174,8 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                     AgeRating = "Rated M for Mature",
                     AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
                     TotalScore = 8m,
-                    DeveloperId = 1,
-                    PublisherId = 1,
+                    Developer = "Epic Games"
+                    
                 },
                 new Game()
                 {
@@ -251,8 +187,8 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                     AgeRating = "Rated M for Mature",
                     AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
                     TotalScore = 9.5m,
-                    DeveloperId = 2,
-                    PublisherId = 2,
+                    Developer = "From Software"
+                    
                 },
                 new Game()
                 {
@@ -264,8 +200,8 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                     AgeRating = "Rated M for Mature",
                     AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
                     TotalScore = 9.3m,
-                    DeveloperId = 3,
-                    PublisherId = 3,
+                    Developer = "Larian Studios Games"
+                    
                 },
                 new Game()
                 {
@@ -277,8 +213,8 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                     AgeRating = "Rated M for Mature",
                     AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
                     TotalScore = 9.0m,
-                    DeveloperId = 4,
-                    PublisherId = 4,
+                    Developer = "CD Projekt Red Studio"
+                    
                 },
                 new Game()
                 {
@@ -290,8 +226,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                     AgeRating = "Rated M for Mature",
                     AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
                     TotalScore = 8.1m,
-                    DeveloperId = 5,
-                    PublisherId = 5,
+                    Developer = "SCE Santa Monica",
                 }
             };
         }
@@ -382,20 +317,6 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                     GenreId = 4
                 },
 
-            };
-        }
-
-        private void SeedNews()
-        {
-            news = new News[] 
-            { 
-                new News() 
-                {
-                    Id = Guid.Parse("aae47f27-2e4a-4e68-a4f2-0c5e3946b2ab"),
-                    GameId = Guid.Parse("b16e5fc7-1fcd-48e8-ae77-6cf139b0b647"),
-                    Title = "DLC incoming",
-                    Description = "Elden Ring DLC is fast approaching and the new trailer has ignited a fierce online debate about Messmer The Impaler's origins. Messmer The Impaler is supposedly the big bad in the Shadow of the Erdtree expansion, as the Collector's Edition even dedicates a fully detailed figurine to the soon-to-be-boss. But the lore implications around Messmer have split the player base in two, between those who believe he was teased from the very beginning to those who think he's an entirely new creation made for the DLC. Messmer is the figure with several snakes peeking up out of his red robes. Pair that with the all-new landmark trees that are at the center of the new Land of Shadows map, coiled around each other chaotically, and the imagery is clear. Messmer is the Satan stand-in. He's the original sinner against the Erdtree. "
-                }
             };
         }
     }
