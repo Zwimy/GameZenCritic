@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace GameZenCritic.Infrastructure.Data.Seed
 {
-    internal class GameConfiguration : IEntityTypeConfiguration<Game>
+    internal class NewsConfiguration : IEntityTypeConfiguration<News>
     {
-        public void Configure(EntityTypeBuilder<Game> builder)
+        public void Configure(EntityTypeBuilder<News> builder)
         {
             var data = new SeedData();
 
-            builder.HasData(data.games);
+            builder.HasData(data.news);
         }
     }
 }

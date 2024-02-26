@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace GameZenCritic.Infrastructure.Data.Seed
 {
-    internal class GenreGameConfiguration : IEntityTypeConfiguration<Genre>
+    internal class GenreGameConfiguration : IEntityTypeConfiguration<GenreGame>
     {
-        public void Configure(EntityTypeBuilder<Genre> builder)
+        public void Configure(EntityTypeBuilder<GenreGame> builder)
         {
             var data = new SeedData();
 

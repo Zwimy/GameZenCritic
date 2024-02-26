@@ -19,6 +19,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
         public Game[] games { get; set; } = null!;
         public GamePlatform[] gamesPlatforms { get; set; } = null!;
         public GenreGame[] genresGames { get; set; } = null!;
+        public News[] news { get; set; } = null!;
 
 
         public SeedData()
@@ -31,6 +32,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
             SeedGames();
             SeedGamesPlatforms();
             SeedGenresGames();
+            SeedNews();
         }
 
         private void SeedPublishers()
@@ -353,6 +355,19 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                     GenreId = 4
                 },
 
+            };
+        }
+
+        private void SeedNews()
+        {
+            news = new News[] 
+            { 
+                new News() 
+                {
+                    GameId = Guid.Parse("b16e5fc7-1fcd-48e8-ae77-6cf139b0b647"),
+                    Title = "DLC incoming",
+                    Description = "Elden Ring DLC is fast approaching and the new trailer has ignited a fierce online debate about Messmer The Impaler's origins. Messmer The Impaler is supposedly the big bad in the Shadow of the Erdtree expansion, as the Collector's Edition even dedicates a fully detailed figurine to the soon-to-be-boss. But the lore implications around Messmer have split the player base in two, between those who believe he was teased from the very beginning to those who think he's an entirely new creation made for the DLC. Messmer is the figure with several snakes peeking up out of his red robes. Pair that with the all-new landmark trees that are at the center of the new Land of Shadows map, coiled around each other chaotically, and the imagery is clear. Messmer is the Satan stand-in. He's the original sinner against the Erdtree. "
+                }
             };
         }
     }
