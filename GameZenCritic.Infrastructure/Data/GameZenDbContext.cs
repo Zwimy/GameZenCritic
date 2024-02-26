@@ -1,4 +1,5 @@
 ﻿using GameZenCritic.Infrastructure.Data.Models;
+using GameZenCritic.Infrastructure.Data.Seed;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Emit;
@@ -26,6 +27,9 @@ namespace GameZenCritic.Infrastructure.Data
 
             builder.Entity<PlayerGameReview>().HasOne(pgr=>pgr.Game).WithMany(g=>g.PlayersGamesReviews).OnDelete(DeleteBehavior.NoAction);
             builder.Entity<PlayerGameReview>().HasOne(pgr=>pgr.Player).WithMany(g=>g.PlayersGamesReviews).OnDelete(DeleteBehavior.NoAction);
+
+            builder.ApplyConfiguration(new PublisherConfiguration());
+            builder.ApplyConfiguration(new PlayerConfiguration());
 
             base.OnModelCreating(builder);
         }
