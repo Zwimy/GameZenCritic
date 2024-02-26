@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace GameZenCritic.Infrastructure.Data.Seed
         public Player[] players { get; set; } = null!;
         public Platform[] platforms { get; set; } = null!;
         public Genre[] genres { get; set; } = null!;
+        public Developer[] developers { get; set; } = null!;
+        public Game[] games { get; set; } = null!;
 
         public SeedData()
         {
@@ -21,6 +24,8 @@ namespace GameZenCritic.Infrastructure.Data.Seed
             SeedPlayers();
             SeedPlatforms();
             SeedGenres();
+            SeedDevelopers();
+            SeedGames();
         }
 
         private void SeedPublishers()
@@ -150,6 +155,110 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                     Name = "Action Adventure"
                 },
 
+            };
+        }
+
+        private void SeedDevelopers()
+        {
+            developers = new Developer[]
+            {
+                new Developer()
+                {
+                    Id= 1,
+                    Name = "Epic Games"
+                },
+                new Developer()
+                {
+                    Id= 2,
+                    Name = "From Software"
+                },
+                new Developer()
+                {
+                    Id= 3,
+                    Name = "Larian Studios Games"
+                },
+                new Developer()
+                {
+                    Id= 4,
+                    Name = "CD Projekt Red Studio"
+                },
+                new Developer()
+                {
+                    Id= 5,
+                    Name = "SCE Santa Monica"
+                },
+            };
+        }
+
+        private void SeedGames()
+        {
+            games = new Game[]
+            {
+                new Game()
+                {
+                    Id = Guid.Parse("f0843ecf-38cf-4a72-a383-2b1c3c0d8d02"),
+                    Name = "Gears of War",
+                    Description = "Gears of War blends tactical action with survival horror and thrusts gamers into a deep and harrowing story of humankind's epic battle for survival against the Locust Horde, a nightmarish race of creatures that surface from the bowels of the planet.",
+                    Picture = "https://www.metacritic.com/a/img/resize/c2c2122b8f2a30ff7dacbdf98d3091c0a9f8088c/catalog/provider/6/12/6-1-68349-52.jpg",
+                    ReleaseDate = DateTime.ParseExact("NOV 7 - 2006", "MMM d - yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None),
+                    AgeRating = "Rated M for Mature",
+                    AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
+                    TotalScore = 8m,
+                    DeveloperId = 1,
+                    PublisherId = 1,
+                },
+                new Game()
+                {
+                    Id = Guid.Parse("b16e5fc7-1fcd-48e8-ae77-6cf139b0b647"),
+                    Name = "Elden Ring",
+                    Description = "A New World Created By Hidetaka Miyazaki And George R. R. Martin ELDEN RING, developed by FromSoftware, Inc. and BANDAI NAMCO Entertainment Inc.",
+                    Picture = "https://www.metacritic.com/a/img/resize/a7d9a5a01234b361785789476e073076a29dad5b/catalog/provider/6/3/6-1-824862-13.jpg",
+                    ReleaseDate = DateTime.ParseExact("FEB 25 - 2022", "MMM d - yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None),
+                    AgeRating = "Rated M for Mature",
+                    AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
+                    TotalScore = 9.5m,
+                    DeveloperId = 2,
+                    PublisherId = 2,
+                },
+                new Game()
+                {
+                    Id = Guid.Parse("7f1e9d4b-53a8-4e63-9d23-31f48a11c41e"),
+                    Name = "Baldur's Gate 3",
+                    Description = "An ancient evil has returned to Baldur's Gate, intent on devouring it from the inside out. The fate of Faerun lies in your hands. Alone, you may resist. But together, you can overcome.",
+                    Picture = "https://www.metacritic.com/a/img/resize/04973a32611600dace99c3638bd3b8f6a9e09477/catalog/provider/7/2/7-1695438055.jpg",
+                    ReleaseDate = DateTime.ParseExact("Aug 3 - 2023", "MMM d - yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None),
+                    AgeRating = "Rated M for Mature",
+                    AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
+                    TotalScore = 9.3m,
+                    DeveloperId = 3,
+                    PublisherId = 3,
+                },
+                new Game()
+                {
+                    Id = Guid.Parse("3e33c5e3-ec4f-4b31-93b0-686fd2da6314"),
+                    Name = "The Witcher 3: Wild Hunt",
+                    Description = "With the Empire attacking the Kingdoms of the North and the Wild Hunt, a cavalcade of ghastly riders, breathing down your neck, the only way to survive is to fight back. As Geralt of Rivia, a master swordsman and monster hunter, leave none of your enemies standing.",
+                    Picture = "https://pre00.deviantart.net/e81c/th/pre/f/2014/157/f/9/witcher_3_box_cover_warner_bros_variation_by_scratcherpen-d7l8i4h.png",
+                    ReleaseDate = DateTime.ParseExact("MAY 19 - 2015", "MMM d - yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None),
+                    AgeRating = "Rated M for Mature",
+                    AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
+                    TotalScore = 9.0m,
+                    DeveloperId = 4,
+                    PublisherId = 4,
+                },
+                new Game()
+                {
+                    Id = Guid.Parse("a8bf3a6e-509d-497b-92a7-f2c4d0f81b5b"),
+                    Name = "God of War: Ragnarok",
+                    Description = "The freezing winds of Fimbulwinter have come to Midgard, making survival for Kratos, Atreus, and Mimir in the Norse wilds even more challenging than before. ",
+                    Picture = "https://www.metacritic.com/a/img/resize/ca0bc42afe883be3a8bac27a19cf2f972fb07921/catalog/provider/6/3/6-1-905093-13.jpg",
+                    ReleaseDate = DateTime.ParseExact("NOV 9 - 2022", "MMM d - yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None),
+                    AgeRating = "Rated M for Mature",
+                    AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
+                    TotalScore = 8.1m,
+                    DeveloperId = 5,
+                    PublisherId = 5,
+                }
             };
         }
     }

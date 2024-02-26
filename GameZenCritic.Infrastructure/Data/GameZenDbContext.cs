@@ -32,6 +32,8 @@ namespace GameZenCritic.Infrastructure.Data
             builder.ApplyConfiguration(new PlayerConfiguration());
             builder.ApplyConfiguration(new PlatformConfiguration());
             builder.ApplyConfiguration(new GenreConfiguration());
+            builder.ApplyConfiguration(new DeveloperConfiguration());
+            builder.ApplyConfiguration(new GameConfiguration());
 
             base.OnModelCreating(builder);
         }
