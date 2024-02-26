@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GameZenCritic.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(GameZenDbContext))]
-    [Migration("20240225124559_initial")]
-    partial class initial
+    [Migration("20240226174046_updatedInitial")]
+    partial class updatedInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,72 +28,98 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("Identifying key");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("GameRep")
+                        .HasColumnType("int")
+                        .HasComment("Rounded down reputation of the game developer for all games");
+
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasComment("Deletion flag");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasComment("Name of the company");
 
                     b.HasKey("Id");
 
                     b.ToTable("Developer");
+
+                    b.HasComment("The developer company of the game");
                 });
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.Game", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasComment("Identifying key");
 
                     b.Property<string>("AgeRating")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasComment("Rating for recommended age (usually by ESRB)");
 
                     b.Property<string>("AgeRatingPicture")
                         .IsRequired()
                         .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(500)")
+                        .HasComment("Link to picture of age rating for the game");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(500)")
+                        .HasComment("Detailed info of the game");
 
                     b.Property<int>("DeveloperId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("The game developer identifier");
+
+                    b.Property<int>("GenreId")
+                        .HasColumnType("int")
+                        .HasComment("The game genre identifier");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasComment("Deletion flag");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(180)
-                        .HasColumnType("nvarchar(180)");
+                        .HasColumnType("nvarchar(180)")
+                        .HasComment("Name of the game");
 
                     b.Property<string>("Picture")
                         .IsRequired()
                         .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(500)")
+                        .HasComment("Link to picture of box art for the game");
 
                     b.Property<int>("PublisherId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("The game publisher identifier");
 
                     b.Property<DateTime>("ReleaseDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasComment("Date of the game initial release");
 
                     b.Property<decimal>("TotalScore")
-                        .HasColumnType("decimal(4,2)");
+                        .HasColumnType("decimal(4,2)")
+                        .HasComment("Average total score of reviews for the game");
 
                     b.HasKey("Id");
 
                     b.HasIndex("DeveloperId");
+
+                    b.HasIndex("GenreId");
 
                     b.HasIndex("PublisherId");
 
@@ -113,7 +139,8 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                         .HasComment("Game key");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasComment("Deletion flag");
 
                     b.HasKey("PlatformId", "GameId");
 
@@ -128,68 +155,66 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("Identifying key");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasComment("Deletion flag");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasComment("Name of the Genre");
 
                     b.HasKey("Id");
 
                     b.ToTable("Genres");
-                });
 
-            modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.GenreGame", b =>
-                {
-                    b.Property<int>("GenreId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("GameId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.HasKey("GenreId", "GameId");
-
-                    b.HasIndex("GameId");
-
-                    b.ToTable("GenresGames");
+                    b.HasComment("The genre of the game e.g. Action, Adventure etc.");
                 });
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.News", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasComment("Identifying key");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasColumnType("nvarchar(1000)")
+                        .HasComment("Text description for the news article");
 
                     b.Property<Guid>("GameId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasComment("Game key/identifier");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasComment("Deletion flag");
+
+                    b.Property<DateTime>("PublishDate")
+                        .HasColumnType("datetime2")
+                        .HasComment("When the article  is published");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(200)")
+                        .HasComment("Title for the news article");
 
                     b.HasKey("Id");
 
                     b.HasIndex("GameId");
 
                     b.ToTable("News");
+
+                    b.HasComment("News list including title and description for a game");
                 });
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.Platform", b =>
@@ -202,7 +227,8 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasComment("Deletion flag");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -219,49 +245,93 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.PlayerGameReview", b =>
                 {
+                    b.Property<Guid>("ReviewId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasComment("Review key/identifier");
+
                     b.Property<string>("PlayerId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(450)")
+                        .HasComment("Player key/identifier");
 
                     b.Property<Guid>("GameId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Details")
-                        .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasColumnType("uniqueidentifier")
+                        .HasComment("Game key/identifier");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasComment("Deletion flag");
 
-                    b.Property<int>("Score")
-                        .HasColumnType("int");
-
-                    b.HasKey("PlayerId", "GameId");
+                    b.HasKey("ReviewId", "PlayerId", "GameId");
 
                     b.HasIndex("GameId");
 
+                    b.HasIndex("PlayerId");
+
                     b.ToTable("PlayersGamesReviews");
+
+                    b.HasComment("The reviews navigational entity from each player for each game");
                 });
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.Publisher", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("Publisher identifier key");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("CountryLocation")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasComment("Name of the publisher company");
+
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasComment("Deletion flag");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasComment("Name of the publisher company");
 
                     b.HasKey("Id");
 
                     b.ToTable("Publisher");
+
+                    b.HasComment("The publisher company of the game");
+                });
+
+            modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.Review", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasComment("Review key/identifier");
+
+                    b.Property<string>("Details")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)")
+                        .HasComment("Text info for the review");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit")
+                        .HasComment("Deletion flag");
+
+                    b.Property<DateTime>("PublishDate")
+                        .HasColumnType("datetime2")
+                        .HasComment("When the review is written");
+
+                    b.Property<int>("Score")
+                        .HasColumnType("int")
+                        .HasComment("The score on this review 0-10");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Review");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -487,6 +557,12 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("GameZenCritic.Infrastructure.Data.Models.Genre", "Genre")
+                        .WithMany("Games")
+                        .HasForeignKey("GenreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("GameZenCritic.Infrastructure.Data.Models.Publisher", "Publisher")
                         .WithMany("Games")
                         .HasForeignKey("PublisherId")
@@ -494,6 +570,8 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Developer");
+
+                    b.Navigation("Genre");
 
                     b.Navigation("Publisher");
                 });
@@ -515,25 +593,6 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                     b.Navigation("Game");
 
                     b.Navigation("Platform");
-                });
-
-            modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.GenreGame", b =>
-                {
-                    b.HasOne("GameZenCritic.Infrastructure.Data.Models.Game", "Game")
-                        .WithMany("GenresGames")
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("GameZenCritic.Infrastructure.Data.Models.Genre", "Genre")
-                        .WithMany("GenresGames")
-                        .HasForeignKey("GenreId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Game");
-
-                    b.Navigation("Genre");
                 });
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.News", b =>
@@ -561,9 +620,17 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
+                    b.HasOne("GameZenCritic.Infrastructure.Data.Models.Review", "Review")
+                        .WithMany("PlayersGamesReviews")
+                        .HasForeignKey("ReviewId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.Navigation("Game");
 
                     b.Navigation("Player");
+
+                    b.Navigation("Review");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -626,8 +693,6 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                 {
                     b.Navigation("GamesPlatforms");
 
-                    b.Navigation("GenresGames");
-
                     b.Navigation("News");
 
                     b.Navigation("PlayersGamesReviews");
@@ -635,7 +700,7 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.Genre", b =>
                 {
-                    b.Navigation("GenresGames");
+                    b.Navigation("Games");
                 });
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.Platform", b =>
@@ -646,6 +711,11 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.Publisher", b =>
                 {
                     b.Navigation("Games");
+                });
+
+            modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.Review", b =>
+                {
+                    b.Navigation("PlayersGamesReviews");
                 });
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.Player", b =>

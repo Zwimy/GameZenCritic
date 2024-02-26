@@ -31,9 +31,9 @@ namespace GameZenCritic.Infrastructure.Data.Models
         public string Name { get; set; } = string.Empty;
 
         /// <summary>
-        /// Navigational property collection to GenresGames
+        /// Navigational property collection to Games
         /// </summary>
-        public virtual ICollection<GenreGame> GenresGames { get; set; } = new List<GenreGame>();
+        public virtual ICollection<Game> Games { get; set; } = new List<Game>();
 
         /// <summary>
         /// Deletion flag

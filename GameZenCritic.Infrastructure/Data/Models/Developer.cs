@@ -26,6 +26,13 @@ namespace GameZenCritic.Infrastructure.Data.Models
         public string Name { get; set; } = string.Empty;
 
         /// <summary>
+        /// Rounded down reputation of the game developer for all games
+        /// </summary>
+        [Comment("Rounded down reputation of the game developer for all games")]
+        [Range(DataConstants.ReviewScoreMinValue, DataConstants.ReviewScoreMaxValue)]
+        public int GameRep { get; set; }
+
+        /// <summary>
         /// Navigational property to Game class
         /// </summary>
         public virtual ICollection<Game> Games { get; set; } = new List<Game>();

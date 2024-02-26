@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GameZenCritic.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(GameZenDbContext))]
-    [Migration("20240226102657_seed")]
-    partial class seed
+    [Migration("20240226174134_Seed4")]
+    partial class Seed4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,50 +28,64 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("Identifying key");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("GameRep")
+                        .HasColumnType("int")
+                        .HasComment("Rounded down reputation of the game developer for all games");
+
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasComment("Deletion flag");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasComment("Name of the company");
 
                     b.HasKey("Id");
 
                     b.ToTable("Developer");
 
+                    b.HasComment("The developer company of the game");
+
                     b.HasData(
                         new
                         {
                             Id = 1,
+                            GameRep = 0,
                             IsDeleted = false,
                             Name = "Epic Games"
                         },
                         new
                         {
                             Id = 2,
+                            GameRep = 0,
                             IsDeleted = false,
                             Name = "From Software"
                         },
                         new
                         {
                             Id = 3,
+                            GameRep = 0,
                             IsDeleted = false,
                             Name = "Larian Studios Games"
                         },
                         new
                         {
                             Id = 4,
+                            GameRep = 0,
                             IsDeleted = false,
                             Name = "CD Projekt Red Studio"
                         },
                         new
                         {
                             Id = 5,
+                            GameRep = 0,
                             IsDeleted = false,
                             Name = "SCE Santa Monica"
                         });
@@ -81,51 +95,68 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasComment("Identifying key");
 
                     b.Property<string>("AgeRating")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasComment("Rating for recommended age (usually by ESRB)");
 
                     b.Property<string>("AgeRatingPicture")
                         .IsRequired()
                         .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(500)")
+                        .HasComment("Link to picture of age rating for the game");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(500)")
+                        .HasComment("Detailed info of the game");
 
                     b.Property<int>("DeveloperId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("The game developer identifier");
+
+                    b.Property<int>("GenreId")
+                        .HasColumnType("int")
+                        .HasComment("The game genre identifier");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasComment("Deletion flag");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(180)
-                        .HasColumnType("nvarchar(180)");
+                        .HasColumnType("nvarchar(180)")
+                        .HasComment("Name of the game");
 
                     b.Property<string>("Picture")
                         .IsRequired()
                         .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(500)")
+                        .HasComment("Link to picture of box art for the game");
 
                     b.Property<int>("PublisherId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("The game publisher identifier");
 
                     b.Property<DateTime>("ReleaseDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasComment("Date of the game initial release");
 
                     b.Property<decimal>("TotalScore")
-                        .HasColumnType("decimal(4,2)");
+                        .HasColumnType("decimal(4,2)")
+                        .HasComment("Average total score of reviews for the game");
 
                     b.HasKey("Id");
 
                     b.HasIndex("DeveloperId");
+
+                    b.HasIndex("GenreId");
 
                     b.HasIndex("PublisherId");
 
@@ -141,6 +172,7 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                             AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
                             Description = "Gears of War blends tactical action with survival horror and thrusts gamers into a deep and harrowing story of humankind's epic battle for survival against the Locust Horde, a nightmarish race of creatures that surface from the bowels of the planet.",
                             DeveloperId = 1,
+                            GenreId = 1,
                             IsDeleted = false,
                             Name = "Gears of War",
                             Picture = "https://www.metacritic.com/a/img/resize/c2c2122b8f2a30ff7dacbdf98d3091c0a9f8088c/catalog/provider/6/12/6-1-68349-52.jpg",
@@ -155,6 +187,7 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                             AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
                             Description = "A New World Created By Hidetaka Miyazaki And George R. R. Martin ELDEN RING, developed by FromSoftware, Inc. and BANDAI NAMCO Entertainment Inc.",
                             DeveloperId = 2,
+                            GenreId = 4,
                             IsDeleted = false,
                             Name = "Elden Ring",
                             Picture = "https://www.metacritic.com/a/img/resize/a7d9a5a01234b361785789476e073076a29dad5b/catalog/provider/6/3/6-1-824862-13.jpg",
@@ -169,6 +202,7 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                             AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
                             Description = "An ancient evil has returned to Baldur's Gate, intent on devouring it from the inside out. The fate of Faerun lies in your hands. Alone, you may resist. But together, you can overcome.",
                             DeveloperId = 3,
+                            GenreId = 3,
                             IsDeleted = false,
                             Name = "Baldur's Gate 3",
                             Picture = "https://www.metacritic.com/a/img/resize/04973a32611600dace99c3638bd3b8f6a9e09477/catalog/provider/7/2/7-1695438055.jpg",
@@ -183,6 +217,7 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                             AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
                             Description = "With the Empire attacking the Kingdoms of the North and the Wild Hunt, a cavalcade of ghastly riders, breathing down your neck, the only way to survive is to fight back. As Geralt of Rivia, a master swordsman and monster hunter, leave none of your enemies standing.",
                             DeveloperId = 4,
+                            GenreId = 3,
                             IsDeleted = false,
                             Name = "The Witcher 3: Wild Hunt",
                             Picture = "https://pre00.deviantart.net/e81c/th/pre/f/2014/157/f/9/witcher_3_box_cover_warner_bros_variation_by_scratcherpen-d7l8i4h.png",
@@ -197,6 +232,7 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                             AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
                             Description = "The freezing winds of Fimbulwinter have come to Midgard, making survival for Kratos, Atreus, and Mimir in the Norse wilds even more challenging than before. ",
                             DeveloperId = 5,
+                            GenreId = 4,
                             IsDeleted = false,
                             Name = "God of War: Ragnarok",
                             Picture = "https://www.metacritic.com/a/img/resize/ca0bc42afe883be3a8bac27a19cf2f972fb07921/catalog/provider/6/3/6-1-905093-13.jpg",
@@ -217,7 +253,8 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                         .HasComment("Game key");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasComment("Deletion flag");
 
                     b.HasKey("PlatformId", "GameId");
 
@@ -282,21 +319,26 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("Identifying key");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasComment("Deletion flag");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasComment("Name of the Genre");
 
                     b.HasKey("Id");
 
                     b.ToTable("Genres");
+
+                    b.HasComment("The genre of the game e.g. Action, Adventure etc.");
 
                     b.HasData(
                         new
@@ -325,83 +367,44 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.GenreGame", b =>
-                {
-                    b.Property<int>("GenreId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("GameId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.HasKey("GenreId", "GameId");
-
-                    b.HasIndex("GameId");
-
-                    b.ToTable("GenresGames");
-
-                    b.HasData(
-                        new
-                        {
-                            GenreId = 1,
-                            GameId = new Guid("f0843ecf-38cf-4a72-a383-2b1c3c0d8d02"),
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            GenreId = 2,
-                            GameId = new Guid("b16e5fc7-1fcd-48e8-ae77-6cf139b0b647"),
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            GenreId = 3,
-                            GameId = new Guid("7f1e9d4b-53a8-4e63-9d23-31f48a11c41e"),
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            GenreId = 3,
-                            GameId = new Guid("3e33c5e3-ec4f-4b31-93b0-686fd2da6314"),
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            GenreId = 4,
-                            GameId = new Guid("a8bf3a6e-509d-497b-92a7-f2c4d0f81b5b"),
-                            IsDeleted = false
-                        });
-                });
-
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.News", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasComment("Identifying key");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasColumnType("nvarchar(1000)")
+                        .HasComment("Text description for the news article");
 
                     b.Property<Guid>("GameId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasComment("Game key/identifier");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasComment("Deletion flag");
+
+                    b.Property<DateTime>("PublishDate")
+                        .HasColumnType("datetime2")
+                        .HasComment("When the article  is published");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(200)")
+                        .HasComment("Title for the news article");
 
                     b.HasKey("Id");
 
                     b.HasIndex("GameId");
 
                     b.ToTable("News");
+
+                    b.HasComment("News list including title and description for a game");
 
                     b.HasData(
                         new
@@ -410,6 +413,7 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                             Description = "Elden Ring DLC is fast approaching and the new trailer has ignited a fierce online debate about Messmer The Impaler's origins. Messmer The Impaler is supposedly the big bad in the Shadow of the Erdtree expansion, as the Collector's Edition even dedicates a fully detailed figurine to the soon-to-be-boss. But the lore implications around Messmer have split the player base in two, between those who believe he was teased from the very beginning to those who think he's an entirely new creation made for the DLC. Messmer is the figure with several snakes peeking up out of his red robes. Pair that with the all-new landmark trees that are at the center of the new Land of Shadows map, coiled around each other chaotically, and the imagery is clear. Messmer is the Satan stand-in. He's the original sinner against the Erdtree. ",
                             GameId = new Guid("b16e5fc7-1fcd-48e8-ae77-6cf139b0b647"),
                             IsDeleted = false,
+                            PublishDate = new DateTime(2024, 2, 26, 19, 41, 34, 148, DateTimeKind.Local).AddTicks(6577),
                             Title = "DLC incoming"
                         });
                 });
@@ -424,7 +428,8 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasComment("Deletion flag");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -485,45 +490,46 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.PlayerGameReview", b =>
                 {
+                    b.Property<Guid>("ReviewId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasComment("Review key/identifier");
+
                     b.Property<string>("PlayerId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(450)")
+                        .HasComment("Player key/identifier");
 
                     b.Property<Guid>("GameId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Details")
-                        .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasColumnType("uniqueidentifier")
+                        .HasComment("Game key/identifier");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasComment("Deletion flag");
 
-                    b.Property<int>("Score")
-                        .HasColumnType("int");
-
-                    b.HasKey("PlayerId", "GameId");
+                    b.HasKey("ReviewId", "PlayerId", "GameId");
 
                     b.HasIndex("GameId");
 
+                    b.HasIndex("PlayerId");
+
                     b.ToTable("PlayersGamesReviews");
+
+                    b.HasComment("The reviews navigational entity from each player for each game");
 
                     b.HasData(
                         new
                         {
+                            ReviewId = new Guid("a75f4424-8937-4cb9-baa7-9f37a8f123a6"),
                             PlayerId = "dea12856-c198-4129-b3f3-b893d8395085",
                             GameId = new Guid("b16e5fc7-1fcd-48e8-ae77-6cf139b0b647"),
-                            Details = "This is the greatest game ever made!",
-                            IsDeleted = false,
-                            Score = 10
+                            IsDeleted = false
                         },
                         new
                         {
+                            ReviewId = new Guid("b9a4f07e-1d0f-44d1-ba35-8a6e4fe092bd"),
                             PlayerId = "dea12856-c198-4129-b3f3-b893d8395085",
                             GameId = new Guid("f0843ecf-38cf-4a72-a383-2b1c3c0d8d02"),
-                            Details = "Was an OK shooter, but overhyped.",
-                            IsDeleted = false,
-                            Score = 7
+                            IsDeleted = false
                         });
                 });
 
@@ -531,52 +537,116 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("Publisher identifier key");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("CountryLocation")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasComment("Name of the publisher company");
+
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("bit")
+                        .HasComment("Deletion flag");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasComment("Name of the publisher company");
 
                     b.HasKey("Id");
 
                     b.ToTable("Publisher");
 
+                    b.HasComment("The publisher company of the game");
+
                     b.HasData(
                         new
                         {
                             Id = 1,
+                            CountryLocation = "USA",
                             IsDeleted = false,
                             Name = "Microsoft Game Studios"
                         },
                         new
                         {
                             Id = 2,
+                            CountryLocation = "Japan",
                             IsDeleted = false,
                             Name = "Bandai Namco Games"
                         },
                         new
                         {
                             Id = 3,
+                            CountryLocation = "Netherlands",
                             IsDeleted = false,
                             Name = "Larian Studios Gamess"
                         },
                         new
                         {
                             Id = 4,
+                            CountryLocation = "Poland",
                             IsDeleted = false,
                             Name = "CD Projekt Red Studio"
                         },
                         new
                         {
                             Id = 5,
+                            CountryLocation = "USA",
                             IsDeleted = false,
                             Name = "PlayStation Studios"
+                        });
+                });
+
+            modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.Review", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasComment("Review key/identifier");
+
+                    b.Property<string>("Details")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)")
+                        .HasComment("Text info for the review");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit")
+                        .HasComment("Deletion flag");
+
+                    b.Property<DateTime>("PublishDate")
+                        .HasColumnType("datetime2")
+                        .HasComment("When the review is written");
+
+                    b.Property<int>("Score")
+                        .HasColumnType("int")
+                        .HasComment("The score on this review 0-10");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Review");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("a75f4424-8937-4cb9-baa7-9f37a8f123a6"),
+                            Details = "This is the greatest game ever made!",
+                            IsDeleted = false,
+                            PublishDate = new DateTime(2024, 2, 26, 19, 41, 34, 133, DateTimeKind.Local).AddTicks(5718),
+                            Score = 10
+                        },
+                        new
+                        {
+                            Id = new Guid("b9a4f07e-1d0f-44d1-ba35-8a6e4fe092bd"),
+                            Details = "Was an OK shooter, but overhyped.",
+                            IsDeleted = false,
+                            PublishDate = new DateTime(2024, 2, 26, 19, 41, 34, 133, DateTimeKind.Local).AddTicks(5747),
+                            Score = 7
                         });
                 });
 
@@ -799,15 +869,15 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                         {
                             Id = "dea12856-c198-4129-b3f3-b893d8395085",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fe6be01e-1747-43fd-88e4-30895ad7f0e3",
+                            ConcurrencyStamp = "728b47a4-49d0-4bfd-80f0-816a08b21c28",
                             Email = "player@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "player@mail.com",
                             NormalizedUserName = "player@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAENU31P1xv80M/xCmXc671Wu1lnc7DANCCNhLY74JmhZoG/05qUzzgXs483BVVSp/EA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEF31tCK6DjKnRo2j/ldeDzCv2KzO4ekku7roVQcTKYkLG6/VFR2GPYWobhek/e6n+g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f9ff5402-8eec-4561-a776-56f8cef64a06",
+                            SecurityStamp = "af9bf934-6803-4061-8548-a145ed80c444",
                             TwoFactorEnabled = false,
                             UserName = "player@mail.com"
                         },
@@ -815,14 +885,14 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                         {
                             Id = "fea12856-c198-4129-b3f3-b893d8395080",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "42983abf-866a-45d3-a895-6035fc38605f",
+                            ConcurrencyStamp = "71bbf609-10f0-4db5-8ce2-c9e81b29fac8",
                             Email = "player2@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "player2@mail.com",
                             NormalizedUserName = "player2@mail.com",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "48fbfb52-6a51-421a-b2c0-59751c4331f2",
+                            SecurityStamp = "e60b9841-09c5-416b-9d57-6addca9a6c4f",
                             TwoFactorEnabled = false,
                             UserName = "player2@mail.com"
                         });
@@ -836,6 +906,12 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("GameZenCritic.Infrastructure.Data.Models.Genre", "Genre")
+                        .WithMany("Games")
+                        .HasForeignKey("GenreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("GameZenCritic.Infrastructure.Data.Models.Publisher", "Publisher")
                         .WithMany("Games")
                         .HasForeignKey("PublisherId")
@@ -843,6 +919,8 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Developer");
+
+                    b.Navigation("Genre");
 
                     b.Navigation("Publisher");
                 });
@@ -864,25 +942,6 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                     b.Navigation("Game");
 
                     b.Navigation("Platform");
-                });
-
-            modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.GenreGame", b =>
-                {
-                    b.HasOne("GameZenCritic.Infrastructure.Data.Models.Game", "Game")
-                        .WithMany("GenresGames")
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("GameZenCritic.Infrastructure.Data.Models.Genre", "Genre")
-                        .WithMany("GenresGames")
-                        .HasForeignKey("GenreId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Game");
-
-                    b.Navigation("Genre");
                 });
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.News", b =>
@@ -910,9 +969,17 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
+                    b.HasOne("GameZenCritic.Infrastructure.Data.Models.Review", "Review")
+                        .WithMany("PlayersGamesReviews")
+                        .HasForeignKey("ReviewId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.Navigation("Game");
 
                     b.Navigation("Player");
+
+                    b.Navigation("Review");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -975,8 +1042,6 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                 {
                     b.Navigation("GamesPlatforms");
 
-                    b.Navigation("GenresGames");
-
                     b.Navigation("News");
 
                     b.Navigation("PlayersGamesReviews");
@@ -984,7 +1049,7 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.Genre", b =>
                 {
-                    b.Navigation("GenresGames");
+                    b.Navigation("Games");
                 });
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.Platform", b =>
@@ -995,6 +1060,11 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.Publisher", b =>
                 {
                     b.Navigation("Games");
+                });
+
+            modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.Review", b =>
+                {
+                    b.Navigation("PlayersGamesReviews");
                 });
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.Player", b =>

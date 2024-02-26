@@ -53,6 +53,13 @@ namespace GameZenCritic.Infrastructure.Data.Models
         public string Description { get; set; } = string.Empty;
 
         /// <summary>
+        /// When the article  is published
+        /// </summary>
+        [Comment("When the article  is published")]
+        [Required]
+        public DateTime PublishDate { get; set; }
+
+        /// <summary>
         /// Deletion flag
         /// </summary>
         [Comment("Deletion flag")]

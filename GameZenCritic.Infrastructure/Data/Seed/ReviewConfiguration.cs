@@ -9,16 +9,13 @@ using System.Threading.Tasks;
 
 namespace GameZenCritic.Infrastructure.Data.Seed
 {
-    /// <summary>
-    /// Entity configuration for GenreGame
-    /// </summary>
-    internal class GenreGameConfiguration : IEntityTypeConfiguration<GenreGame>
+    internal class ReviewConfiguration : IEntityTypeConfiguration<Review>
     {
-        public void Configure(EntityTypeBuilder<GenreGame> builder)
+        public void Configure(EntityTypeBuilder<Review> builder)
         {
             var data = new SeedData();
 
-            builder.HasData(data.genresGames);
+            builder.HasData(data.reviews);
         }
     }
 }

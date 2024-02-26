@@ -26,6 +26,14 @@ namespace GameZenCritic.Infrastructure.Data.Models
         public string Name { get; set; } = string.Empty;
 
         /// <summary>
+        /// Country of the publisher company
+        /// </summary>
+        [Comment("Name of the publisher company")]
+        [Required]
+        [StringLength(DataConstants.PublisherCountryMaxLength)]
+        public string CountryLocation { get; set; } = string.Empty;
+
+        /// <summary>
         /// Navigational property collection for Game
         /// </summary>
         public virtual ICollection<Game> Games { get; set; } = new List<Game>();

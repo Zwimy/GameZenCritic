@@ -1,5 +1,6 @@
 ﻿using GameZenCritic.Infrastructure.Data.Constants;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -104,6 +105,19 @@ namespace GameZenCritic.Infrastructure.Data.Models
         public Publisher Publisher { get; set; } = null!;
 
         /// <summary>
+        /// The game genre identifier
+        /// </summary>
+        [Required]
+        [Comment("The game genre identifier")]
+        public int GenreId { get; set; }
+
+        /// <summary>
+        /// Navigational property to Genre
+        /// </summary>
+        [ForeignKey(nameof(GenreId))]
+        public virtual Genre Genre { get; set; } = null!;
+
+        /// <summary>
         /// Navigational property and collection to News
         /// </summary>
         public virtual ICollection<News> News { get; set; } = new List<News>();
@@ -117,11 +131,6 @@ namespace GameZenCritic.Infrastructure.Data.Models
         /// Navigational property and collection to PlayersGamesReviews
         /// </summary>
         public virtual ICollection<PlayerGameReview> PlayersGamesReviews { get; set; } = new List<PlayerGameReview>();
-
-        /// <summary>
-        /// Navigational property and collection to GenresGames
-        /// </summary>
-        public virtual ICollection<GenreGame> GenresGames { get; set; } = new List<GenreGame>();
 
         /// <summary>
         /// Deletion flag

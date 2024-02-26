@@ -21,9 +21,9 @@ namespace GameZenCritic.Infrastructure.Data.Seed
         public Developer[] developers { get; set; } = null!;
         public Game[] games { get; set; } = null!;
         public GamePlatform[] gamesPlatforms { get; set; } = null!;
-        public GenreGame[] genresGames { get; set; } = null!;
         public News[] news { get; set; } = null!;
         public PlayerGameReview[] playersGamesReviews { get; set; } = null!;
+        public Review[] reviews { get; set; } = null!;
 
 
         public SeedData()
@@ -35,9 +35,30 @@ namespace GameZenCritic.Infrastructure.Data.Seed
             SeedDevelopers();
             SeedGames();
             SeedGamesPlatforms();
-            SeedGenresGames();
+            SeedReviews();
             SeedNews();
             SeedPlayersGamesReviews();
+        }
+
+        private void SeedReviews()
+        {
+            reviews = new Review[]
+            {
+                new Review()
+                {
+                    Id = Guid.Parse("a75f4424-8937-4cb9-baa7-9f37a8f123a6"),
+                    Details = "This is the greatest game ever made!",
+                    Score = 10,
+                    PublishDate = DateTime.Now,
+                },
+                new Review()
+                {
+                    Id = Guid.Parse("b9a4f07e-1d0f-44d1-ba35-8a6e4fe092bd"),
+                    Details = "Was an OK shooter, but overhyped.",
+                    Score = 7,
+                    PublishDate = DateTime.Now,
+                }
+            };
         }
 
         private void SeedPlayersGamesReviews()
@@ -46,19 +67,17 @@ namespace GameZenCritic.Infrastructure.Data.Seed
             {
                 new PlayerGameReview
                 {
+                    ReviewId = Guid.Parse("a75f4424-8937-4cb9-baa7-9f37a8f123a6"),
                     GameId = Guid.Parse("b16e5fc7-1fcd-48e8-ae77-6cf139b0b647"),
-                    PlayerId = "dea12856-c198-4129-b3f3-b893d8395085",
-                    Details = "This is the greatest game ever made!",
-                    Score = 10,
+                    PlayerId = "dea12856-c198-4129-b3f3-b893d8395085"
+                    
                 },
                 new PlayerGameReview
                 {
+                    ReviewId = Guid.Parse("b9a4f07e-1d0f-44d1-ba35-8a6e4fe092bd"),
                     GameId = Guid.Parse("f0843ecf-38cf-4a72-a383-2b1c3c0d8d02"),
-                    PlayerId = "dea12856-c198-4129-b3f3-b893d8395085",
-                    Details = "Was an OK shooter, but overhyped.",
-                    Score = 7,
+                    PlayerId = "dea12856-c198-4129-b3f3-b893d8395085"
                 },
-
             };
         }
 
@@ -70,26 +89,31 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                 {
                     Id = 1,
                     Name = "Microsoft Game Studios",
+                    CountryLocation = "USA"
                 },
                 new Publisher()
                 {
                     Id = 2,
                     Name = "Bandai Namco Games",
+                    CountryLocation = "Japan"
                 },
                 new Publisher()
                 {
                     Id = 3,
                     Name = "Larian Studios Gamess",
+                    CountryLocation = "Netherlands"
                 },
                 new Publisher()
                 {
                     Id = 4,
                     Name = "CD Projekt Red Studio",
+                    CountryLocation = "Poland"
                 },
                 new Publisher()
                 {
                     Id = 5,
                     Name = "PlayStation Studios",
+                    CountryLocation = "USA"
                 },
 
             };
@@ -240,6 +264,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                     TotalScore = 8m,
                     DeveloperId = 1,
                     PublisherId = 1,
+                    GenreId = 1,
                 },
                 new Game()
                 {
@@ -253,6 +278,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                     TotalScore = 9.5m,
                     DeveloperId = 2,
                     PublisherId = 2,
+                    GenreId = 4,
                 },
                 new Game()
                 {
@@ -266,6 +292,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                     TotalScore = 9.3m,
                     DeveloperId = 3,
                     PublisherId = 3,
+                    GenreId = 3,
                 },
                 new Game()
                 {
@@ -279,6 +306,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                     TotalScore = 9.0m,
                     DeveloperId = 4,
                     PublisherId = 4,
+                    GenreId = 3,
                 },
                 new Game()
                 {
@@ -292,6 +320,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                     TotalScore = 8.1m,
                     DeveloperId = 5,
                     PublisherId = 5,
+                    GenreId = 4,
                 }
             };
         }
@@ -352,39 +381,6 @@ namespace GameZenCritic.Infrastructure.Data.Seed
             };
         }
 
-        private void SeedGenresGames()
-        {
-            genresGames = new GenreGame[]
-            {
-                new GenreGame()
-                {
-                    GameId = Guid.Parse("f0843ecf-38cf-4a72-a383-2b1c3c0d8d02"),
-                    GenreId = 1
-                },
-                new GenreGame()
-                {
-                    GameId = Guid.Parse("b16e5fc7-1fcd-48e8-ae77-6cf139b0b647"),
-                    GenreId = 2
-                },
-                new GenreGame()
-                {
-                    GameId = Guid.Parse("7f1e9d4b-53a8-4e63-9d23-31f48a11c41e"),
-                    GenreId = 3
-                },
-                new GenreGame()
-                {
-                    GameId = Guid.Parse("3e33c5e3-ec4f-4b31-93b0-686fd2da6314"),
-                    GenreId = 3
-                },
-                new GenreGame()
-                {
-                    GameId = Guid.Parse("a8bf3a6e-509d-497b-92a7-f2c4d0f81b5b"),
-                    GenreId = 4
-                },
-
-            };
-        }
-
         private void SeedNews()
         {
             news = new News[] 
@@ -393,6 +389,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                 {
                     Id = Guid.Parse("aae47f27-2e4a-4e68-a4f2-0c5e3946b2ab"),
                     GameId = Guid.Parse("b16e5fc7-1fcd-48e8-ae77-6cf139b0b647"),
+                    PublishDate = DateTime.Now,
                     Title = "DLC incoming",
                     Description = "Elden Ring DLC is fast approaching and the new trailer has ignited a fierce online debate about Messmer The Impaler's origins. Messmer The Impaler is supposedly the big bad in the Shadow of the Erdtree expansion, as the Collector's Edition even dedicates a fully detailed figurine to the soon-to-be-boss. But the lore implications around Messmer have split the player base in two, between those who believe he was teased from the very beginning to those who think he's an entirely new creation made for the DLC. Messmer is the figure with several snakes peeking up out of his red robes. Pair that with the all-new landmark trees that are at the center of the new Land of Shadows map, coiled around each other chaotically, and the imagery is clear. Messmer is the Satan stand-in. He's the original sinner against the Erdtree. "
                 }

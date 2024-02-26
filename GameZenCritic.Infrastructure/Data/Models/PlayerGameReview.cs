@@ -12,11 +12,24 @@ using System.Threading.Tasks;
 namespace GameZenCritic.Infrastructure.Data.Models
 {
     /// <summary>
-    /// The reviews from each player for each game including score and details
+    /// The reviews navigational entity from each player for each game
     /// </summary>
-    [Comment("The reviews from each player for each game including score and details")]
+    [Comment("The reviews navigational entity from each player for each game")]
     public class PlayerGameReview
     {
+        /// <summary>
+        /// Review identifier and key relation
+        /// </summary>
+        [Comment("Review key/identifier")]
+        [Required]
+        public Guid ReviewId { get; set; }
+
+        /// <summary>
+        /// Foreign key and navigational property to Review
+        /// </summary>
+        [ForeignKey(nameof(ReviewId))]
+        public Review Review { get; set; } = null!;
+
         /// <summary>
         /// Player identifier and key relation
         /// </summary>
@@ -42,22 +55,6 @@ namespace GameZenCritic.Infrastructure.Data.Models
         /// </summary>
         [ForeignKey(nameof(GameId))]
         public Game Game { get; set; } = null!;
-
-        /// <summary>
-        /// Text info for the review
-        /// </summary>
-        [Comment("Text info for the review")]
-        [Required]
-        [StringLength(DataConstants.ReviewDescriptionMaxLength)]
-        public string Details { get; set; } = string.Empty;
-
-        /// <summary>
-        /// The score for the game on this review 0-10
-        /// </summary>
-        [Comment("The score for the game on this review 0-10")]
-        [Required]
-        [Range(DataConstants.ReviewScoreMinValue,DataConstants.ReviewScoreMaxValue)]
-        public int Score { get; set; }
 
         /// <summary>
         /// Deletion flag

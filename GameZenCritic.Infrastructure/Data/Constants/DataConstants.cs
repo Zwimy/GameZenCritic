@@ -48,6 +48,9 @@ namespace GameZenCritic.Infrastructure.Data.Constants
         public const int PublisherNameMaxLength = 100;
         public const int PublisherNameMinLength = 5;
 
+        public const int PublisherCountryMaxLength = 100;
+        public const int PublisherCountryMinLength = 2;
+
         public const int PlayerUserNameMaxLength = 20;
         public const int PlayerEmailMaxLength = 60;
 
