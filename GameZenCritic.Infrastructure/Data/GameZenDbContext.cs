@@ -37,6 +37,7 @@ namespace GameZenCritic.Infrastructure.Data
             builder.ApplyConfiguration(new GamePlatformConfiguration());
             builder.ApplyConfiguration(new GenreGameConfiguration());
             builder.ApplyConfiguration(new NewsConfiguration());
+            builder.ApplyConfiguration(new PlayerGameReviewConfiguration());
 
             base.OnModelCreating(builder);
         }

@@ -20,6 +20,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
         public GamePlatform[] gamesPlatforms { get; set; } = null!;
         public GenreGame[] genresGames { get; set; } = null!;
         public News[] news { get; set; } = null!;
+        public PlayerGameReview[] playersGamesReviews { get; set; } = null!;
 
 
         public SeedData()
@@ -33,6 +34,29 @@ namespace GameZenCritic.Infrastructure.Data.Seed
             SeedGamesPlatforms();
             SeedGenresGames();
             SeedNews();
+            SeedPlayersGamesReviews();
+        }
+
+        private void SeedPlayersGamesReviews()
+        {
+            playersGamesReviews = new PlayerGameReview[]
+            {
+                new PlayerGameReview
+                {
+                    GameId = Guid.Parse("b16e5fc7-1fcd-48e8-ae77-6cf139b0b647"),
+                    PlayerId = "dea12856-c198-4129-b3f3-b893d8395085",
+                    Details = "This is the greatest game ever made!",
+                    Score = 10,
+                },
+                new PlayerGameReview
+                {
+                    GameId = Guid.Parse("f0843ecf-38cf-4a72-a383-2b1c3c0d8d02"),
+                    PlayerId = "dea12856-c198-4129-b3f3-b893d8395085",
+                    Details = "Was an OK shooter, but overhyped.",
+                    Score = 7,
+                },
+
+            };
         }
 
         private void SeedPublishers()
