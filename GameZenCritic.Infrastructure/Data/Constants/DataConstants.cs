@@ -17,6 +17,8 @@ namespace GameZenCritic.Infrastructure.Data.Constants
         public const int GameNameMaxLength = 180;
         public const int GameNameMinLength = 2;
 
+        public const string DateTimeFormat = "MMM d - yyyy";
+
         public const int GameDescriptionMaxLength = 500;
         public const int GameDescriptionMinLength = 10;
 
