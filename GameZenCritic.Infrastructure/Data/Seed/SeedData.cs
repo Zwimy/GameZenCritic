@@ -12,11 +12,15 @@ namespace GameZenCritic.Infrastructure.Data.Seed
     {
         public Publisher[] publishers { get; set; } = null!;
         public Player[] players { get; set; } = null!;
+        public Platform[] platforms { get; set; } = null!;
+        public Genre[] genres { get; set; } = null!;
 
         public SeedData()
         {
             SeedPublishers();
             SeedPlayers();
+            SeedPlatforms();
+            SeedGenres();
         }
 
         private void SeedPublishers()
@@ -77,6 +81,76 @@ namespace GameZenCritic.Infrastructure.Data.Seed
             TestPlayer1.PasswordHash = hasher.HashPassword(TestPlayer2, "Test123456");
 
             players = new Player[] {TestPlayer1, TestPlayer2};
+        }
+
+        private void SeedPlatforms()
+        {
+            platforms = new Platform[]
+            {
+                new Platform()
+                {
+                    Id = 1,
+                    Name = "PC",
+                },
+                new Platform()
+                {
+                    Id = 2,
+                    Name = "Xbox 360",
+                },
+                new Platform()
+                {
+                    Id = 3,
+                    Name = "PlayStation 5",
+                },
+                new Platform()
+                {
+                    Id = 4,
+                    Name = "Xbox Series X",
+                },
+                new Platform()
+                {
+                    Id = 5,
+                    Name = "PlayStation 4",
+                },
+                new Platform()
+                {
+                    Id = 6,
+                    Name = "Xbox One",
+                },
+                new Platform()
+                {
+                    Id = 7,
+                    Name = "Nintendo Switch",
+                }
+            };
+        }
+
+        private void SeedGenres()
+        {
+            genres = new Genre[]
+            {
+                new Genre() 
+                {
+                    Id = 1,
+                    Name = "Third Person Shooter"
+                },
+                new Genre() 
+                {
+                    Id = 2,
+                    Name = "Action RPG"
+                },
+                new Genre() 
+                {
+                    Id = 3,
+                    Name = "Western RPG"
+                },
+                new Genre() 
+                {
+                    Id = 4,
+                    Name = "Action Adventure"
+                },
+
+            };
         }
     }
 }
