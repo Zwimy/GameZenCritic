@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace GameZenCritic.Infrastructure.Data.Seed
 {
+    /// <summary>
+    /// Entity configuration for News
+    /// </summary>
     internal class NewsConfiguration : IEntityTypeConfiguration<News>
     {
         public void Configure(EntityTypeBuilder<News> builder)

@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace GameZenCritic.Infrastructure.Data.Seed
 {
+    /// <summary>
+    /// Entity configuration for PlayerGameReview
+    /// </summary>
     internal class PlayerGameReviewConfiguration : IEntityTypeConfiguration<PlayerGameReview>
     {
         public void Configure(EntityTypeBuilder<PlayerGameReview> builder)

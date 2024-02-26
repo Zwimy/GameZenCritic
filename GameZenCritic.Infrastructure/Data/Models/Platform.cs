@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GameZenCritic.Infrastructure.Data.Constants;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace GameZenCritic.Infrastructure.Data.Models
 {
     /// <summary>
-    /// Platform object inclusing identifier and name
+    /// Platform class inclusing identifier and name
     /// </summary>
     [Comment("Platform list inclusing identifier and name")]
     public class Platform
@@ -26,14 +27,18 @@ namespace GameZenCritic.Infrastructure.Data.Models
         /// </summary>
         [Comment("Platform name")]
         [Required]
-        [MaxLength(200)]
+        [MaxLength(DataConstants.PlatformNameMaxLength)]
         public string Name { get; set; } = string.Empty;
 
         /// <summary>
-        /// Navigational property for games
+        /// Navigational property for GamesPlatforms
         /// </summary>
         public virtual ICollection<GamePlatform> GamesPlatforms { get; set; } = new List<GamePlatform>();
 
+        /// <summary>
+        /// Deletion flag
+        /// </summary>
+        [Comment("Deletion flag")]
         public bool IsDeleted { get; set; } = false;
     }
 }

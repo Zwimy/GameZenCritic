@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace GameZenCritic.Infrastructure.Data.Seed
 {
+    /// <summary>
+    /// Entity configuration for Publisher
+    /// </summary>
     internal class PublisherConfiguration : IEntityTypeConfiguration<Publisher>
     {
         public void Configure(EntityTypeBuilder<Publisher> builder)

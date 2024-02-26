@@ -6,6 +6,9 @@ using System.Reflection.Emit;
 
 namespace GameZenCritic.Infrastructure.Data
 {
+    /// <summary>
+    /// Database context setup for the project
+    /// </summary>
     public class GameZenDbContext : IdentityDbContext
     {
         public GameZenDbContext(DbContextOptions<GameZenDbContext> options)

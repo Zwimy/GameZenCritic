@@ -22,7 +22,9 @@ namespace GameZenCritic.Infrastructure.Data.Models
         [Required]
         public Guid GameId { get; set; }
 
-        [Comment("Game identifier")]
+        /// <summary>
+        /// Foreign key and navigational property to Game
+        /// </summary>
         [ForeignKey(nameof(GameId))]
         public Game Game { get; set; } = null!;
 
@@ -33,10 +35,16 @@ namespace GameZenCritic.Infrastructure.Data.Models
         [Required]
         public int PlatformId { get; set; }
 
-        [Comment("Platform identifier")]
+        /// <summary>
+        /// Foreign key and navigational property to Platform
+        /// </summary>
         [ForeignKey(nameof(PlatformId))]
         public Platform Platform { get; set; } = null!;
 
+        /// <summary>
+        /// Deletion flag
+        /// </summary>
+        [Comment("Deletion flag")]
         public bool IsDeleted { get; set; } = false;
     }
 }

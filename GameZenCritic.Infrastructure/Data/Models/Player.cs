@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using GameZenCritic.Infrastructure.Data.Constants;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,10 +9,13 @@ using System.Threading.Tasks;
 
 namespace GameZenCritic.Infrastructure.Data.Models
 {
+    /// <summary>
+    /// Player class using IdentityUser implementation
+    /// </summary>
     public class Player : IdentityUser
     {
         [Required]
-        [MaxLength(20)]
+        [MaxLength(DataConstants.PlayerUserNameMaxLength)]
         public override string UserName
         {
             get => base.UserName;
@@ -19,13 +23,16 @@ namespace GameZenCritic.Infrastructure.Data.Models
         }
 
         [Required]
-        [MaxLength(60)]
+        [MaxLength(DataConstants.PlayerEmailMaxLength)]
         public override string Email
         {
             get => base.Email;
             set => base.Email = value;
         }
 
+        /// <summary>
+        /// Navigational property to PlayersGamesReviews
+        /// </summary>
         public virtual ICollection<PlayerGameReview> PlayersGamesReviews { get; set; } = new List<PlayerGameReview>();
 
     }

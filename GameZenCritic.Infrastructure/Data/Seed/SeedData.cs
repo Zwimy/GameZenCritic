@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace GameZenCritic.Infrastructure.Data.Seed
 {
+    /// <summary>
+    /// This is the seeding data for the database
+    /// </summary>
     internal class SeedData
     {
         public Publisher[] publishers { get; set; } = null!;
