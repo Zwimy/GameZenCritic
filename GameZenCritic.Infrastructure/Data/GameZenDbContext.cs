@@ -32,13 +32,13 @@ namespace GameZenCritic.Infrastructure.Data
             builder.Entity<PlayerGameReview>().HasOne(pgr=>pgr.Player).WithMany(g=>g.PlayersGamesReviews).OnDelete(DeleteBehavior.NoAction);
 
             
-            //builder.ApplyConfiguration(new PlayerConfiguration());
-            //builder.ApplyConfiguration(new PlatformConfiguration());
-            //builder.ApplyConfiguration(new GenreConfiguration());
-            //builder.ApplyConfiguration(new GameConfiguration());
-            //builder.ApplyConfiguration(new GamePlatformConfiguration());
-            //builder.ApplyConfiguration(new GenreGameConfiguration());
-            //builder.ApplyConfiguration(new PlayerGameReviewConfiguration());
+            builder.ApplyConfiguration(new PlayerConfiguration());
+            builder.ApplyConfiguration(new PlatformConfiguration());
+            builder.ApplyConfiguration(new GenreConfiguration());
+            builder.ApplyConfiguration(new GameConfiguration());
+            builder.ApplyConfiguration(new GamePlatformConfiguration());
+            builder.ApplyConfiguration(new GenreGameConfiguration());
+            builder.ApplyConfiguration(new PlayerGameReviewConfiguration());
 
             base.OnModelCreating(builder);
         }
