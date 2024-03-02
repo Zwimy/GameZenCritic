@@ -141,7 +141,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                 Email = "player2@mail.com",
                 NormalizedEmail = "player2@mail.com"
             };
-            TestPlayer1.PasswordHash = hasher.HashPassword(TestPlayer2, "Test123456");
+            TestPlayer2.PasswordHash = hasher.HashPassword(TestPlayer2, "Test123456");
 
             players = new Player[] {TestPlayer1, TestPlayer2};
         }

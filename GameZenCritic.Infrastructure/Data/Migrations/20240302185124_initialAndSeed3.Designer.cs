@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GameZenCritic.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(GameZenDbContext))]
-    [Migration("20240302183151_initialAndSeed")]
-    partial class initialAndSeed
+    [Migration("20240302185124_initialAndSeed3")]
+    partial class initialAndSeed3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -417,7 +417,7 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                             Description = "Elden Ring DLC is fast approaching and the new trailer has ignited a fierce online debate about Messmer The Impaler's origins. Messmer The Impaler is supposedly the big bad in the Shadow of the Erdtree expansion, as the Collector's Edition even dedicates a fully detailed figurine to the soon-to-be-boss. But the lore implications around Messmer have split the player base in two, between those who believe he was teased from the very beginning to those who think he's an entirely new creation made for the DLC. Messmer is the figure with several snakes peeking up out of his red robes. Pair that with the all-new landmark trees that are at the center of the new Land of Shadows map, coiled around each other chaotically, and the imagery is clear. Messmer is the Satan stand-in. He's the original sinner against the Erdtree. ",
                             GameId = 2,
                             IsDeleted = false,
-                            PublishDate = new DateTime(2024, 3, 2, 20, 31, 51, 323, DateTimeKind.Local).AddTicks(3653),
+                            PublishDate = new DateTime(2024, 3, 2, 20, 51, 24, 319, DateTimeKind.Local).AddTicks(8273),
                             Title = "DLC incoming"
                         });
                 });
@@ -643,7 +643,7 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                             Id = 1,
                             Details = "This is the greatest game ever made!",
                             IsDeleted = false,
-                            PublishDate = new DateTime(2024, 3, 2, 20, 31, 51, 308, DateTimeKind.Local).AddTicks(3932),
+                            PublishDate = new DateTime(2024, 3, 2, 20, 51, 24, 305, DateTimeKind.Local).AddTicks(564),
                             Score = 10
                         },
                         new
@@ -651,7 +651,7 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                             Id = 2,
                             Details = "Was an OK shooter, but overhyped.",
                             IsDeleted = false,
-                            PublishDate = new DateTime(2024, 3, 2, 20, 31, 51, 308, DateTimeKind.Local).AddTicks(3962),
+                            PublishDate = new DateTime(2024, 3, 2, 20, 51, 24, 305, DateTimeKind.Local).AddTicks(594),
                             Score = 7
                         });
                 });
@@ -875,15 +875,15 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                         {
                             Id = "dea12856-c198-4129-b3f3-b893d8395085",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "72068d41-1f87-4fce-9919-5f9329948f44",
+                            ConcurrencyStamp = "e9da3af7-3161-43e8-9363-9bcd2cc0af0f",
                             Email = "player@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "player@mail.com",
                             NormalizedUserName = "player@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEL/F0bdIa8LZqlZMtte8JKyqu1Fu3MdNbt+zJZVubzfOtw8TFsv9Dyl6UZ7k1BErvA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFn8Q8R3vNNYSkLt2eOS9cpwT9tmI3gVRtw7BsaVtbUmSdYiIvneZouwovk31NZ9lA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "be7677d1-ae5c-4312-b74b-6c1d9fb3c65c",
+                            SecurityStamp = "390fed78-8282-4bff-9ee7-f3e8a67f0a3c",
                             TwoFactorEnabled = false,
                             UserName = "player@mail.com"
                         },
@@ -891,14 +891,15 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                         {
                             Id = "fea12856-c198-4129-b3f3-b893d8395080",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e4cc1ac5-cc79-4ee3-81a5-a862d917b15e",
+                            ConcurrencyStamp = "c1934ad7-6187-4b5c-b410-9862a4f0e1f4",
                             Email = "player2@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "player2@mail.com",
                             NormalizedUserName = "player2@mail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPjNi/g0ibIK8GGqICJ+rIr0H3EOVxA8yu/m1iAgpgFEVctnWNOp0+9cFkfDX6dBuQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "01622163-7d8d-4c59-a4f4-79f77f38df28",
+                            SecurityStamp = "8652fc4b-aa12-42b9-ac1f-7fa1d0ca1e39",
                             TwoFactorEnabled = false,
                             UserName = "player2@mail.com"
                         });

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GameZenCritic.Infrastructure.Data.Migrations
 {
-    public partial class initialAndSeed : Migration
+    public partial class initialAndSeed3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -219,8 +219,8 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "dea12856-c198-4129-b3f3-b893d8395085", 0, "72068d41-1f87-4fce-9919-5f9329948f44", "Player", "player@mail.com", false, false, null, "player@mail.com", "player@mail.com", "AQAAAAEAACcQAAAAEL/F0bdIa8LZqlZMtte8JKyqu1Fu3MdNbt+zJZVubzfOtw8TFsv9Dyl6UZ7k1BErvA==", null, false, "be7677d1-ae5c-4312-b74b-6c1d9fb3c65c", false, "player@mail.com" },
-                    { "fea12856-c198-4129-b3f3-b893d8395080", 0, "e4cc1ac5-cc79-4ee3-81a5-a862d917b15e", "Player", "player2@mail.com", false, false, null, "player2@mail.com", "player2@mail.com", null, null, false, "01622163-7d8d-4c59-a4f4-79f77f38df28", false, "player2@mail.com" }
+                    { "dea12856-c198-4129-b3f3-b893d8395085", 0, "e9da3af7-3161-43e8-9363-9bcd2cc0af0f", "Player", "player@mail.com", false, false, null, "player@mail.com", "player@mail.com", "AQAAAAEAACcQAAAAEFn8Q8R3vNNYSkLt2eOS9cpwT9tmI3gVRtw7BsaVtbUmSdYiIvneZouwovk31NZ9lA==", null, false, "390fed78-8282-4bff-9ee7-f3e8a67f0a3c", false, "player@mail.com" },
+                    { "fea12856-c198-4129-b3f3-b893d8395080", 0, "c1934ad7-6187-4b5c-b410-9862a4f0e1f4", "Player", "player2@mail.com", false, false, null, "player2@mail.com", "player2@mail.com", "AQAAAAEAACcQAAAAEPjNi/g0ibIK8GGqICJ+rIr0H3EOVxA8yu/m1iAgpgFEVctnWNOp0+9cFkfDX6dBuQ==", null, false, "8652fc4b-aa12-42b9-ac1f-7fa1d0ca1e39", false, "player2@mail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -277,8 +277,8 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                 columns: new[] { "Id", "Details", "IsDeleted", "PublishDate", "Score" },
                 values: new object[,]
                 {
-                    { 1, "This is the greatest game ever made!", false, new DateTime(2024, 3, 2, 20, 31, 51, 308, DateTimeKind.Local).AddTicks(3932), 10 },
-                    { 2, "Was an OK shooter, but overhyped.", false, new DateTime(2024, 3, 2, 20, 31, 51, 308, DateTimeKind.Local).AddTicks(3962), 7 }
+                    { 1, "This is the greatest game ever made!", false, new DateTime(2024, 3, 2, 20, 51, 24, 305, DateTimeKind.Local).AddTicks(564), 10 },
+                    { 2, "Was an OK shooter, but overhyped.", false, new DateTime(2024, 3, 2, 20, 51, 24, 305, DateTimeKind.Local).AddTicks(594), 7 }
                 });
 
             migrationBuilder.InsertData(
@@ -311,7 +311,7 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
             migrationBuilder.InsertData(
                 table: "News",
                 columns: new[] { "Id", "Description", "GameId", "IsDeleted", "PublishDate", "Title" },
-                values: new object[] { 1, "Elden Ring DLC is fast approaching and the new trailer has ignited a fierce online debate about Messmer The Impaler's origins. Messmer The Impaler is supposedly the big bad in the Shadow of the Erdtree expansion, as the Collector's Edition even dedicates a fully detailed figurine to the soon-to-be-boss. But the lore implications around Messmer have split the player base in two, between those who believe he was teased from the very beginning to those who think he's an entirely new creation made for the DLC. Messmer is the figure with several snakes peeking up out of his red robes. Pair that with the all-new landmark trees that are at the center of the new Land of Shadows map, coiled around each other chaotically, and the imagery is clear. Messmer is the Satan stand-in. He's the original sinner against the Erdtree. ", 2, false, new DateTime(2024, 3, 2, 20, 31, 51, 323, DateTimeKind.Local).AddTicks(3653), "DLC incoming" });
+                values: new object[] { 1, "Elden Ring DLC is fast approaching and the new trailer has ignited a fierce online debate about Messmer The Impaler's origins. Messmer The Impaler is supposedly the big bad in the Shadow of the Erdtree expansion, as the Collector's Edition even dedicates a fully detailed figurine to the soon-to-be-boss. But the lore implications around Messmer have split the player base in two, between those who believe he was teased from the very beginning to those who think he's an entirely new creation made for the DLC. Messmer is the figure with several snakes peeking up out of his red robes. Pair that with the all-new landmark trees that are at the center of the new Land of Shadows map, coiled around each other chaotically, and the imagery is clear. Messmer is the Satan stand-in. He's the original sinner against the Erdtree. ", 2, false, new DateTime(2024, 3, 2, 20, 51, 24, 319, DateTimeKind.Local).AddTicks(8273), "DLC incoming" });
 
             migrationBuilder.InsertData(
                 table: "PlayersGamesReviews",
