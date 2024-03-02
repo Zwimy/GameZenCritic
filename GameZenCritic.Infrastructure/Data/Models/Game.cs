@@ -22,7 +22,7 @@ namespace GameZenCritic.Infrastructure.Data.Models
         /// </summary>
         [Comment("Identifying key")]
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Name of the game

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GameZenCritic.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(GameZenDbContext))]
-    [Migration("20240226174046_updatedInitial")]
-    partial class updatedInitial
+    [Migration("20240302183151_initialAndSeed")]
+    partial class initialAndSeed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,14 +52,53 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                     b.ToTable("Developer");
 
                     b.HasComment("The developer company of the game");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            GameRep = 0,
+                            IsDeleted = false,
+                            Name = "Epic Games"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            GameRep = 0,
+                            IsDeleted = false,
+                            Name = "From Software"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            GameRep = 0,
+                            IsDeleted = false,
+                            Name = "Larian Studios Games"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            GameRep = 0,
+                            IsDeleted = false,
+                            Name = "CD Projekt Red Studio"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            GameRep = 0,
+                            IsDeleted = false,
+                            Name = "SCE Santa Monica"
+                        });
                 });
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.Game", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("int")
                         .HasComment("Identifying key");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("AgeRating")
                         .IsRequired()
@@ -126,6 +165,83 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                     b.ToTable("Game");
 
                     b.HasComment("Game list including description and various info");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AgeRating = "Rated M for Mature",
+                            AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
+                            Description = "Gears of War blends tactical action with survival horror and thrusts gamers into a deep and harrowing story of humankind's epic battle for survival against the Locust Horde, a nightmarish race of creatures that surface from the bowels of the planet.",
+                            DeveloperId = 1,
+                            GenreId = 1,
+                            IsDeleted = false,
+                            Name = "Gears of War",
+                            Picture = "https://www.metacritic.com/a/img/resize/c2c2122b8f2a30ff7dacbdf98d3091c0a9f8088c/catalog/provider/6/12/6-1-68349-52.jpg",
+                            PublisherId = 1,
+                            ReleaseDate = new DateTime(2006, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TotalScore = 8m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AgeRating = "Rated M for Mature",
+                            AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
+                            Description = "A New World Created By Hidetaka Miyazaki And George R. R. Martin ELDEN RING, developed by FromSoftware, Inc. and BANDAI NAMCO Entertainment Inc.",
+                            DeveloperId = 2,
+                            GenreId = 4,
+                            IsDeleted = false,
+                            Name = "Elden Ring",
+                            Picture = "https://www.metacritic.com/a/img/resize/a7d9a5a01234b361785789476e073076a29dad5b/catalog/provider/6/3/6-1-824862-13.jpg",
+                            PublisherId = 2,
+                            ReleaseDate = new DateTime(2022, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TotalScore = 9.5m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AgeRating = "Rated M for Mature",
+                            AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
+                            Description = "An ancient evil has returned to Baldur's Gate, intent on devouring it from the inside out. The fate of Faerun lies in your hands. Alone, you may resist. But together, you can overcome.",
+                            DeveloperId = 3,
+                            GenreId = 3,
+                            IsDeleted = false,
+                            Name = "Baldur's Gate 3",
+                            Picture = "https://www.metacritic.com/a/img/resize/04973a32611600dace99c3638bd3b8f6a9e09477/catalog/provider/7/2/7-1695438055.jpg",
+                            PublisherId = 3,
+                            ReleaseDate = new DateTime(2023, 8, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TotalScore = 9.3m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AgeRating = "Rated M for Mature",
+                            AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
+                            Description = "With the Empire attacking the Kingdoms of the North and the Wild Hunt, a cavalcade of ghastly riders, breathing down your neck, the only way to survive is to fight back. As Geralt of Rivia, a master swordsman and monster hunter, leave none of your enemies standing.",
+                            DeveloperId = 4,
+                            GenreId = 3,
+                            IsDeleted = false,
+                            Name = "The Witcher 3: Wild Hunt",
+                            Picture = "https://pre00.deviantart.net/e81c/th/pre/f/2014/157/f/9/witcher_3_box_cover_warner_bros_variation_by_scratcherpen-d7l8i4h.png",
+                            PublisherId = 4,
+                            ReleaseDate = new DateTime(2015, 5, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TotalScore = 9.0m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AgeRating = "Rated M for Mature",
+                            AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
+                            Description = "The freezing winds of Fimbulwinter have come to Midgard, making survival for Kratos, Atreus, and Mimir in the Norse wilds even more challenging than before. ",
+                            DeveloperId = 5,
+                            GenreId = 4,
+                            IsDeleted = false,
+                            Name = "God of War: Ragnarok",
+                            Picture = "https://www.metacritic.com/a/img/resize/ca0bc42afe883be3a8bac27a19cf2f972fb07921/catalog/provider/6/3/6-1-905093-13.jpg",
+                            PublisherId = 5,
+                            ReleaseDate = new DateTime(2022, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TotalScore = 8.1m
+                        });
                 });
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.GamePlatform", b =>
@@ -134,8 +250,8 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                         .HasColumnType("int")
                         .HasComment("Platform key");
 
-                    b.Property<Guid>("GameId")
-                        .HasColumnType("uniqueidentifier")
+                    b.Property<int>("GameId")
+                        .HasColumnType("int")
                         .HasComment("Game key");
 
                     b.Property<bool>("IsDeleted")
@@ -149,6 +265,56 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                     b.ToTable("GamesPlatforms");
 
                     b.HasComment("List of the games and platforms, many to many related");
+
+                    b.HasData(
+                        new
+                        {
+                            PlatformId = 1,
+                            GameId = 1,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            PlatformId = 2,
+                            GameId = 1,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            PlatformId = 1,
+                            GameId = 2,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            PlatformId = 3,
+                            GameId = 2,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            PlatformId = 4,
+                            GameId = 3,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            PlatformId = 1,
+                            GameId = 4,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            PlatformId = 3,
+                            GameId = 5,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            PlatformId = 4,
+                            GameId = 5,
+                            IsDeleted = false
+                        });
                 });
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.Genre", b =>
@@ -175,14 +341,42 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                     b.ToTable("Genres");
 
                     b.HasComment("The genre of the game e.g. Action, Adventure etc.");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IsDeleted = false,
+                            Name = "Third Person Shooter"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IsDeleted = false,
+                            Name = "Action RPG"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            IsDeleted = false,
+                            Name = "Western RPG"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            IsDeleted = false,
+                            Name = "Action Adventure"
+                        });
                 });
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.News", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("int")
                         .HasComment("Identifying key");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -190,8 +384,8 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                         .HasColumnType("nvarchar(1000)")
                         .HasComment("Text description for the news article");
 
-                    b.Property<Guid>("GameId")
-                        .HasColumnType("uniqueidentifier")
+                    b.Property<int>("GameId")
+                        .HasColumnType("int")
                         .HasComment("Game key/identifier");
 
                     b.Property<bool>("IsDeleted")
@@ -215,6 +409,17 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                     b.ToTable("News");
 
                     b.HasComment("News list including title and description for a game");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Elden Ring DLC is fast approaching and the new trailer has ignited a fierce online debate about Messmer The Impaler's origins. Messmer The Impaler is supposedly the big bad in the Shadow of the Erdtree expansion, as the Collector's Edition even dedicates a fully detailed figurine to the soon-to-be-boss. But the lore implications around Messmer have split the player base in two, between those who believe he was teased from the very beginning to those who think he's an entirely new creation made for the DLC. Messmer is the figure with several snakes peeking up out of his red robes. Pair that with the all-new landmark trees that are at the center of the new Land of Shadows map, coiled around each other chaotically, and the imagery is clear. Messmer is the Satan stand-in. He's the original sinner against the Erdtree. ",
+                            GameId = 2,
+                            IsDeleted = false,
+                            PublishDate = new DateTime(2024, 3, 2, 20, 31, 51, 323, DateTimeKind.Local).AddTicks(3653),
+                            Title = "DLC incoming"
+                        });
                 });
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.Platform", b =>
@@ -241,20 +446,64 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                     b.ToTable("Platform");
 
                     b.HasComment("Platform list inclusing identifier and name");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IsDeleted = false,
+                            Name = "PC"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IsDeleted = false,
+                            Name = "Xbox 360"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            IsDeleted = false,
+                            Name = "PlayStation 5"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            IsDeleted = false,
+                            Name = "Xbox Series X"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            IsDeleted = false,
+                            Name = "PlayStation 4"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            IsDeleted = false,
+                            Name = "Xbox One"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            IsDeleted = false,
+                            Name = "Nintendo Switch"
+                        });
                 });
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.PlayerGameReview", b =>
                 {
-                    b.Property<Guid>("ReviewId")
-                        .HasColumnType("uniqueidentifier")
+                    b.Property<int>("ReviewId")
+                        .HasColumnType("int")
                         .HasComment("Review key/identifier");
 
                     b.Property<string>("PlayerId")
                         .HasColumnType("nvarchar(450)")
                         .HasComment("Player key/identifier");
 
-                    b.Property<Guid>("GameId")
-                        .HasColumnType("uniqueidentifier")
+                    b.Property<int>("GameId")
+                        .HasColumnType("int")
                         .HasComment("Game key/identifier");
 
                     b.Property<bool>("IsDeleted")
@@ -270,6 +519,22 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                     b.ToTable("PlayersGamesReviews");
 
                     b.HasComment("The reviews navigational entity from each player for each game");
+
+                    b.HasData(
+                        new
+                        {
+                            ReviewId = 1,
+                            PlayerId = "dea12856-c198-4129-b3f3-b893d8395085",
+                            GameId = 2,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            ReviewId = 2,
+                            PlayerId = "dea12856-c198-4129-b3f3-b893d8395085",
+                            GameId = 1,
+                            IsDeleted = false
+                        });
                 });
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.Publisher", b =>
@@ -302,14 +567,53 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                     b.ToTable("Publisher");
 
                     b.HasComment("The publisher company of the game");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CountryLocation = "USA",
+                            IsDeleted = false,
+                            Name = "Microsoft Game Studios"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CountryLocation = "Japan",
+                            IsDeleted = false,
+                            Name = "Bandai Namco Games"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CountryLocation = "Netherlands",
+                            IsDeleted = false,
+                            Name = "Larian Studios Gamess"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CountryLocation = "Poland",
+                            IsDeleted = false,
+                            Name = "CD Projekt Red Studio"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CountryLocation = "USA",
+                            IsDeleted = false,
+                            Name = "PlayStation Studios"
+                        });
                 });
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.Review", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("int")
                         .HasComment("Review key/identifier");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Details")
                         .IsRequired()
@@ -332,6 +636,24 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Review");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Details = "This is the greatest game ever made!",
+                            IsDeleted = false,
+                            PublishDate = new DateTime(2024, 3, 2, 20, 31, 51, 308, DateTimeKind.Local).AddTicks(3932),
+                            Score = 10
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Details = "Was an OK shooter, but overhyped.",
+                            IsDeleted = false,
+                            PublishDate = new DateTime(2024, 3, 2, 20, 31, 51, 308, DateTimeKind.Local).AddTicks(3962),
+                            Score = 7
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -547,6 +869,39 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
                     b.HasDiscriminator().HasValue("Player");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "dea12856-c198-4129-b3f3-b893d8395085",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "72068d41-1f87-4fce-9919-5f9329948f44",
+                            Email = "player@mail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "player@mail.com",
+                            NormalizedUserName = "player@mail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEL/F0bdIa8LZqlZMtte8JKyqu1Fu3MdNbt+zJZVubzfOtw8TFsv9Dyl6UZ7k1BErvA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "be7677d1-ae5c-4312-b74b-6c1d9fb3c65c",
+                            TwoFactorEnabled = false,
+                            UserName = "player@mail.com"
+                        },
+                        new
+                        {
+                            Id = "fea12856-c198-4129-b3f3-b893d8395080",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e4cc1ac5-cc79-4ee3-81a5-a862d917b15e",
+                            Email = "player2@mail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "player2@mail.com",
+                            NormalizedUserName = "player2@mail.com",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "01622163-7d8d-4c59-a4f4-79f77f38df28",
+                            TwoFactorEnabled = false,
+                            UserName = "player2@mail.com"
+                        });
                 });
 
             modelBuilder.Entity("GameZenCritic.Infrastructure.Data.Models.Game", b =>

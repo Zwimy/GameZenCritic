@@ -46,14 +46,14 @@ namespace GameZenCritic.Infrastructure.Data.Seed
             {
                 new Review()
                 {
-                    Id = Guid.Parse("a75f4424-8937-4cb9-baa7-9f37a8f123a6"),
+                    Id = 1,
                     Details = "This is the greatest game ever made!",
                     Score = 10,
                     PublishDate = DateTime.Now,
                 },
                 new Review()
                 {
-                    Id = Guid.Parse("b9a4f07e-1d0f-44d1-ba35-8a6e4fe092bd"),
+                    Id = 2,
                     Details = "Was an OK shooter, but overhyped.",
                     Score = 7,
                     PublishDate = DateTime.Now,
@@ -67,15 +67,15 @@ namespace GameZenCritic.Infrastructure.Data.Seed
             {
                 new PlayerGameReview
                 {
-                    ReviewId = Guid.Parse("a75f4424-8937-4cb9-baa7-9f37a8f123a6"),
-                    GameId = Guid.Parse("b16e5fc7-1fcd-48e8-ae77-6cf139b0b647"),
+                    ReviewId = 1,
+                    GameId = 2,
                     PlayerId = "dea12856-c198-4129-b3f3-b893d8395085"
                     
                 },
                 new PlayerGameReview
                 {
-                    ReviewId = Guid.Parse("b9a4f07e-1d0f-44d1-ba35-8a6e4fe092bd"),
-                    GameId = Guid.Parse("f0843ecf-38cf-4a72-a383-2b1c3c0d8d02"),
+                    ReviewId = 2,
+                    GameId = 1,
                     PlayerId = "dea12856-c198-4129-b3f3-b893d8395085"
                 },
             };
@@ -254,7 +254,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
             {
                 new Game()
                 {
-                    Id = Guid.Parse("f0843ecf-38cf-4a72-a383-2b1c3c0d8d02"),
+                    Id = 1,
                     Name = "Gears of War",
                     Description = "Gears of War blends tactical action with survival horror and thrusts gamers into a deep and harrowing story of humankind's epic battle for survival against the Locust Horde, a nightmarish race of creatures that surface from the bowels of the planet.",
                     Picture = "https://www.metacritic.com/a/img/resize/c2c2122b8f2a30ff7dacbdf98d3091c0a9f8088c/catalog/provider/6/12/6-1-68349-52.jpg",
@@ -268,7 +268,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                 },
                 new Game()
                 {
-                    Id = Guid.Parse("b16e5fc7-1fcd-48e8-ae77-6cf139b0b647"),
+                    Id = 2,
                     Name = "Elden Ring",
                     Description = "A New World Created By Hidetaka Miyazaki And George R. R. Martin ELDEN RING, developed by FromSoftware, Inc. and BANDAI NAMCO Entertainment Inc.",
                     Picture = "https://www.metacritic.com/a/img/resize/a7d9a5a01234b361785789476e073076a29dad5b/catalog/provider/6/3/6-1-824862-13.jpg",
@@ -282,7 +282,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                 },
                 new Game()
                 {
-                    Id = Guid.Parse("7f1e9d4b-53a8-4e63-9d23-31f48a11c41e"),
+                    Id = 3,
                     Name = "Baldur's Gate 3",
                     Description = "An ancient evil has returned to Baldur's Gate, intent on devouring it from the inside out. The fate of Faerun lies in your hands. Alone, you may resist. But together, you can overcome.",
                     Picture = "https://www.metacritic.com/a/img/resize/04973a32611600dace99c3638bd3b8f6a9e09477/catalog/provider/7/2/7-1695438055.jpg",
@@ -296,7 +296,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                 },
                 new Game()
                 {
-                    Id = Guid.Parse("3e33c5e3-ec4f-4b31-93b0-686fd2da6314"),
+                    Id = 4,
                     Name = "The Witcher 3: Wild Hunt",
                     Description = "With the Empire attacking the Kingdoms of the North and the Wild Hunt, a cavalcade of ghastly riders, breathing down your neck, the only way to survive is to fight back. As Geralt of Rivia, a master swordsman and monster hunter, leave none of your enemies standing.",
                     Picture = "https://pre00.deviantart.net/e81c/th/pre/f/2014/157/f/9/witcher_3_box_cover_warner_bros_variation_by_scratcherpen-d7l8i4h.png",
@@ -310,7 +310,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                 },
                 new Game()
                 {
-                    Id = Guid.Parse("a8bf3a6e-509d-497b-92a7-f2c4d0f81b5b"),
+                    Id = 5,
                     Name = "God of War: Ragnarok",
                     Description = "The freezing winds of Fimbulwinter have come to Midgard, making survival for Kratos, Atreus, and Mimir in the Norse wilds even more challenging than before. ",
                     Picture = "https://www.metacritic.com/a/img/resize/ca0bc42afe883be3a8bac27a19cf2f972fb07921/catalog/provider/6/3/6-1-905093-13.jpg",
@@ -331,49 +331,49 @@ namespace GameZenCritic.Infrastructure.Data.Seed
             {
                 new GamePlatform()
                 {
-                    GameId = Guid.Parse("f0843ecf-38cf-4a72-a383-2b1c3c0d8d02"),
+                    GameId = 1,
                     PlatformId = 1
                 },
 
                 new GamePlatform()
                 {
-                    GameId = Guid.Parse("f0843ecf-38cf-4a72-a383-2b1c3c0d8d02"),
+                    GameId = 1,
                     PlatformId = 2
                 },
 
                 new GamePlatform()
                 {
-                    GameId = Guid.Parse("b16e5fc7-1fcd-48e8-ae77-6cf139b0b647"),
+                    GameId = 2,
                     PlatformId = 1
                 },
 
                 new GamePlatform()
                 {
-                    GameId = Guid.Parse("b16e5fc7-1fcd-48e8-ae77-6cf139b0b647"),
+                    GameId = 2,
                     PlatformId = 3
                 },
 
                 new GamePlatform()
                 {
-                    GameId = Guid.Parse("b16e5fc7-1fcd-48e8-ae77-6cf139b0b647"),
+                    GameId = 3,
                     PlatformId = 4
                 },
 
                 new GamePlatform()
                 {
-                    GameId = Guid.Parse("7f1e9d4b-53a8-4e63-9d23-31f48a11c41e"),
+                    GameId = 4,
                     PlatformId = 1
                 },
 
                 new GamePlatform()
                 {
-                    GameId = Guid.Parse("7f1e9d4b-53a8-4e63-9d23-31f48a11c41e"),
+                    GameId = 5,
                     PlatformId = 3
                 },
 
                 new GamePlatform()
                 {
-                    GameId = Guid.Parse("7f1e9d4b-53a8-4e63-9d23-31f48a11c41e"),
+                    GameId = 5,
                     PlatformId = 4
                 },
 
@@ -387,8 +387,8 @@ namespace GameZenCritic.Infrastructure.Data.Seed
             { 
                 new News() 
                 {
-                    Id = Guid.Parse("aae47f27-2e4a-4e68-a4f2-0c5e3946b2ab"),
-                    GameId = Guid.Parse("b16e5fc7-1fcd-48e8-ae77-6cf139b0b647"),
+                    Id = 1,
+                    GameId = 2,
                     PublishDate = DateTime.Now,
                     Title = "DLC incoming",
                     Description = "Elden Ring DLC is fast approaching and the new trailer has ignited a fierce online debate about Messmer The Impaler's origins. Messmer The Impaler is supposedly the big bad in the Shadow of the Erdtree expansion, as the Collector's Edition even dedicates a fully detailed figurine to the soon-to-be-boss. But the lore implications around Messmer have split the player base in two, between those who believe he was teased from the very beginning to those who think he's an entirely new creation made for the DLC. Messmer is the figure with several snakes peeking up out of his red robes. Pair that with the all-new landmark trees that are at the center of the new Land of Shadows map, coiled around each other chaotically, and the imagery is clear. Messmer is the Satan stand-in. He's the original sinner against the Erdtree. "

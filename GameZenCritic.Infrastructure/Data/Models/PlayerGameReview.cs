@@ -22,7 +22,7 @@ namespace GameZenCritic.Infrastructure.Data.Models
         /// </summary>
         [Comment("Review key/identifier")]
         [Required]
-        public Guid ReviewId { get; set; }
+        public int ReviewId { get; set; }
 
         /// <summary>
         /// Foreign key and navigational property to Review
@@ -48,7 +48,7 @@ namespace GameZenCritic.Infrastructure.Data.Models
         /// </summary>
         [Comment("Game key/identifier")]
         [Required]
-        public Guid GameId { get; set; }
+        public int GameId { get; set; }
 
         /// <summary>
         /// Foreign key and navigational property to Game

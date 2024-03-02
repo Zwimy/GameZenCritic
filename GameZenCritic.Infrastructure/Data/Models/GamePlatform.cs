@@ -20,7 +20,7 @@ namespace GameZenCritic.Infrastructure.Data.Models
         /// </summary>
         [Comment("Game key")]
         [Required]
-        public Guid GameId { get; set; }
+        public int GameId { get; set; }
 
         /// <summary>
         /// Foreign key and navigational property to Game

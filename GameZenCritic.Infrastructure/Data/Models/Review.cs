@@ -17,7 +17,7 @@ namespace GameZenCritic.Infrastructure.Data.Models
         /// </summary>
         [Comment("Review key/identifier")]
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Text info for the review

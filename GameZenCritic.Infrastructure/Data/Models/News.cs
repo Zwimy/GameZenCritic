@@ -21,14 +21,14 @@ namespace GameZenCritic.Infrastructure.Data.Models
         /// </summary>
         [Comment("Identifying key")]
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Game identifier and key relation
         /// </summary>
         [Comment("Game key/identifier")]
         [Required]
-        public Guid GameId { get; set; }
+        public int GameId { get; set; }
 
         /// <summary>
         /// Foreign key and navigational property to Game
