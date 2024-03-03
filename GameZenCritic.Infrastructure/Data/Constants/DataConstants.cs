@@ -14,6 +14,8 @@ namespace GameZenCritic.Infrastructure.Data.Constants
         public const int DeveloperNameMaxLength = 100;
         public const int DeveloperNameMinLength = 2;
 
+        public const int DevLogoMaxLength = 500;
+
         public const int GameNameMaxLength = 180;
         public const int GameNameMinLength = 2;
 

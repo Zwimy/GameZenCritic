@@ -38,6 +38,13 @@ namespace GameZenCritic.Infrastructure.Data.Models
         public virtual ICollection<Game> Games { get; set; } = new List<Game>();
 
         /// <summary>
+        /// Link to picture of Developer logo
+        /// </summary>
+        [Comment("Link to picture of Developer logo")]
+        [MaxLength(DataConstants.DevLogoMaxLength)]
+        public string LogoLink { get; set; } = string.Empty;
+
+        /// <summary>
         /// Deletion flag
         /// </summary>
         [Comment("Deletion flag")]
