@@ -34,6 +34,7 @@ namespace GameZenCritic.Core.Models.Game
         /// <summary>
         /// Average total score of reviews for the game
         /// </summary>
+        [Display(Name = "Game score")]
         public decimal TotalScore { get; set; } = 0m;
 
     }

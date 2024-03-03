@@ -13,7 +13,7 @@ namespace GameZenCritic.Core.Models.Home
     /// </summary>
     public class TopGamesAndDevelopersViewModel
     {
-        public ICollection<GameShortInfoViewModel> Games { get; set; } = new List<GameShortInfoViewModel>();
+        public IEnumerable<GameShortInfoViewModel> Games { get; set; } = new List<GameShortInfoViewModel>();
 
         public DeveloperInfoViewModel TopDeveloper { get; set; } = null!;
 

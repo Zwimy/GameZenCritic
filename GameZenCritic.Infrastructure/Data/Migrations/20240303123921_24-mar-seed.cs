@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GameZenCritic.Infrastructure.Data.Migrations
 {
-    public partial class initialAndSeed3 : Migration
+    public partial class _24marseed : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,6 +24,7 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false, comment: "Name of the company"),
                     GameRep = table.Column<int>(type: "int", nullable: false, comment: "Rounded down reputation of the game developer for all games"),
+                    LogoLink = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false, comment: "Link to picture of Developer logo"),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, comment: "Deletion flag")
                 },
                 constraints: table =>
@@ -219,20 +220,20 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "dea12856-c198-4129-b3f3-b893d8395085", 0, "e9da3af7-3161-43e8-9363-9bcd2cc0af0f", "Player", "player@mail.com", false, false, null, "player@mail.com", "player@mail.com", "AQAAAAEAACcQAAAAEFn8Q8R3vNNYSkLt2eOS9cpwT9tmI3gVRtw7BsaVtbUmSdYiIvneZouwovk31NZ9lA==", null, false, "390fed78-8282-4bff-9ee7-f3e8a67f0a3c", false, "player@mail.com" },
-                    { "fea12856-c198-4129-b3f3-b893d8395080", 0, "c1934ad7-6187-4b5c-b410-9862a4f0e1f4", "Player", "player2@mail.com", false, false, null, "player2@mail.com", "player2@mail.com", "AQAAAAEAACcQAAAAEPjNi/g0ibIK8GGqICJ+rIr0H3EOVxA8yu/m1iAgpgFEVctnWNOp0+9cFkfDX6dBuQ==", null, false, "8652fc4b-aa12-42b9-ac1f-7fa1d0ca1e39", false, "player2@mail.com" }
+                    { "dea12856-c198-4129-b3f3-b893d8395085", 0, "cb03b33f-fa02-41b5-84ef-eccaa2c576f3", "Player", "player@mail.com", false, false, null, "player@mail.com", "player@mail.com", "AQAAAAEAACcQAAAAEBjNQ+YWA1Wp7/g+nML0e/6N2Lwm36inXR84tbauIVfLqzvR+D2bgOEN0jQZ2U/lOQ==", null, false, "aa357e0f-8f0d-4be2-bc53-e256f0e5f10a", false, "player@mail.com" },
+                    { "fea12856-c198-4129-b3f3-b893d8395080", 0, "48667189-ecdc-4f7c-a386-2525fdb4805e", "Player", "player2@mail.com", false, false, null, "player2@mail.com", "player2@mail.com", "AQAAAAEAACcQAAAAEDskwUFo1HR/6snL+JfS9oE1JKWOxx9lCIa4m2I/Z0LRbHD6B5OIMI2Z9rsFGC2yTQ==", null, false, "5e2ab7c1-7303-4ae6-8141-fa2796d35a03", false, "player2@mail.com" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Developer",
-                columns: new[] { "Id", "GameRep", "IsDeleted", "Name" },
+                columns: new[] { "Id", "GameRep", "IsDeleted", "LogoLink", "Name" },
                 values: new object[,]
                 {
-                    { 1, 0, false, "Epic Games" },
-                    { 2, 0, false, "From Software" },
-                    { 3, 0, false, "Larian Studios Games" },
-                    { 4, 0, false, "CD Projekt Red Studio" },
-                    { 5, 0, false, "SCE Santa Monica" }
+                    { 1, 6, false, "https://logodownload.org/wp-content/uploads/2020/10/epic-games-logo-0.png", "Epic Games" },
+                    { 2, 6, false, "https://gamingbolt.com/wp-content/uploads/2019/12/FromSoftware-logo.jpg", "From Software" },
+                    { 3, 8, false, "https://www.gematsu.com/wp-content/uploads/2022/11/Company-Logo_Larian-Studios-320x456.png", "Larian Studios Games" },
+                    { 4, 7, false, "https://www.kitguru.net/wp-content/uploads/2016/03/cd-projekt-red-logo.png", "CD Projekt Red Studio" },
+                    { 5, 7, false, "https://i.pinimg.com/564x/1e/5f/3d/1e5f3df1ca42e4719c459ac0792c6d53.jpg", "SCE Santa Monica" }
                 });
 
             migrationBuilder.InsertData(
@@ -277,8 +278,8 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                 columns: new[] { "Id", "Details", "IsDeleted", "PublishDate", "Score" },
                 values: new object[,]
                 {
-                    { 1, "This is the greatest game ever made!", false, new DateTime(2024, 3, 2, 20, 51, 24, 305, DateTimeKind.Local).AddTicks(564), 10 },
-                    { 2, "Was an OK shooter, but overhyped.", false, new DateTime(2024, 3, 2, 20, 51, 24, 305, DateTimeKind.Local).AddTicks(594), 7 }
+                    { 1, "This is the greatest game ever made!", false, new DateTime(2024, 3, 3, 14, 39, 20, 823, DateTimeKind.Local).AddTicks(8937), 10 },
+                    { 2, "Was an OK shooter, but overhyped.", false, new DateTime(2024, 3, 3, 14, 39, 20, 823, DateTimeKind.Local).AddTicks(8963), 7 }
                 });
 
             migrationBuilder.InsertData(
@@ -286,11 +287,11 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                 columns: new[] { "Id", "AgeRating", "AgeRatingPicture", "Description", "DeveloperId", "GenreId", "IsDeleted", "Name", "Picture", "PublisherId", "ReleaseDate", "TotalScore" },
                 values: new object[,]
                 {
-                    { 1, "Rated M for Mature", "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png", "Gears of War blends tactical action with survival horror and thrusts gamers into a deep and harrowing story of humankind's epic battle for survival against the Locust Horde, a nightmarish race of creatures that surface from the bowels of the planet.", 1, 1, false, "Gears of War", "https://www.metacritic.com/a/img/resize/c2c2122b8f2a30ff7dacbdf98d3091c0a9f8088c/catalog/provider/6/12/6-1-68349-52.jpg", 1, new DateTime(2006, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), 8m },
-                    { 2, "Rated M for Mature", "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png", "A New World Created By Hidetaka Miyazaki And George R. R. Martin ELDEN RING, developed by FromSoftware, Inc. and BANDAI NAMCO Entertainment Inc.", 2, 4, false, "Elden Ring", "https://www.metacritic.com/a/img/resize/a7d9a5a01234b361785789476e073076a29dad5b/catalog/provider/6/3/6-1-824862-13.jpg", 2, new DateTime(2022, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 9.5m },
-                    { 3, "Rated M for Mature", "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png", "An ancient evil has returned to Baldur's Gate, intent on devouring it from the inside out. The fate of Faerun lies in your hands. Alone, you may resist. But together, you can overcome.", 3, 3, false, "Baldur's Gate 3", "https://www.metacritic.com/a/img/resize/04973a32611600dace99c3638bd3b8f6a9e09477/catalog/provider/7/2/7-1695438055.jpg", 3, new DateTime(2023, 8, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), 9.3m },
-                    { 4, "Rated M for Mature", "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png", "With the Empire attacking the Kingdoms of the North and the Wild Hunt, a cavalcade of ghastly riders, breathing down your neck, the only way to survive is to fight back. As Geralt of Rivia, a master swordsman and monster hunter, leave none of your enemies standing.", 4, 3, false, "The Witcher 3: Wild Hunt", "https://pre00.deviantart.net/e81c/th/pre/f/2014/157/f/9/witcher_3_box_cover_warner_bros_variation_by_scratcherpen-d7l8i4h.png", 4, new DateTime(2015, 5, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), 9.0m },
-                    { 5, "Rated M for Mature", "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png", "The freezing winds of Fimbulwinter have come to Midgard, making survival for Kratos, Atreus, and Mimir in the Norse wilds even more challenging than before. ", 5, 4, false, "God of War: Ragnarok", "https://www.metacritic.com/a/img/resize/ca0bc42afe883be3a8bac27a19cf2f972fb07921/catalog/provider/6/3/6-1-905093-13.jpg", 5, new DateTime(2022, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 8.1m }
+                    { 1, "Rated M for Mature", "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png", "Gears of War blends tactical action with survival horror and thrusts gamers into a deep and harrowing story of humankind's epic battle for survival against the Locust Horde, a nightmarish race of creatures that surface from the bowels of the planet.", 1, 1, false, "Gears of War", "https://twinfinite.net/wp-content/uploads/2023/01/Best-Xbox-360-Co-Op-Games.png?resize=1000%2C600", 1, new DateTime(2006, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), 8m },
+                    { 2, "Rated M for Mature", "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png", "A New World Created By Hidetaka Miyazaki And George R. R. Martin ELDEN RING, developed by FromSoftware, Inc. and BANDAI NAMCO Entertainment Inc.", 2, 4, false, "Elden Ring", "https://th.bing.com/th/id/OIF.pwBY1yiS46uxscEVyfb5HQ?rs=1&pid=ImgDetMain", 2, new DateTime(2022, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 9.5m },
+                    { 3, "Rated M for Mature", "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png", "An ancient evil has returned to Baldur's Gate, intent on devouring it from the inside out. The fate of Faerun lies in your hands. Alone, you may resist. But together, you can overcome.", 3, 3, false, "Baldur's Gate 3", "https://mcdn.wallpapersafari.com/medium/59/58/Bh5wWX.jpg", 3, new DateTime(2023, 8, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), 9.3m },
+                    { 4, "Rated M for Mature", "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png", "With the Empire attacking the Kingdoms of the North and the Wild Hunt, a cavalcade of ghastly riders, breathing down your neck, the only way to survive is to fight back. As Geralt of Rivia, a master swordsman and monster hunter, leave none of your enemies standing.", 4, 3, false, "The Witcher 3: Wild Hunt", "https://th.bing.com/th/id/OIP.ESLUrniRRUtzAk-LMGNjAAHaEK?pid=ImgDet&w=320&h=180&c=7", 4, new DateTime(2015, 5, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), 9.0m },
+                    { 5, "Rated M for Mature", "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png", "The freezing winds of Fimbulwinter have come to Midgard, making survival for Kratos, Atreus, and Mimir in the Norse wilds even more challenging than before. ", 5, 4, false, "God of War: Ragnarok", "https://th.bing.com/th/id/OIP.jcAkvpdxr_5gQW0dm6_7VQHaJH?pid=ImgDet&w=146.25&h=180&c=7", 5, new DateTime(2022, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 8.1m }
                 });
 
             migrationBuilder.InsertData(
@@ -311,7 +312,7 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
             migrationBuilder.InsertData(
                 table: "News",
                 columns: new[] { "Id", "Description", "GameId", "IsDeleted", "PublishDate", "Title" },
-                values: new object[] { 1, "Elden Ring DLC is fast approaching and the new trailer has ignited a fierce online debate about Messmer The Impaler's origins. Messmer The Impaler is supposedly the big bad in the Shadow of the Erdtree expansion, as the Collector's Edition even dedicates a fully detailed figurine to the soon-to-be-boss. But the lore implications around Messmer have split the player base in two, between those who believe he was teased from the very beginning to those who think he's an entirely new creation made for the DLC. Messmer is the figure with several snakes peeking up out of his red robes. Pair that with the all-new landmark trees that are at the center of the new Land of Shadows map, coiled around each other chaotically, and the imagery is clear. Messmer is the Satan stand-in. He's the original sinner against the Erdtree. ", 2, false, new DateTime(2024, 3, 2, 20, 51, 24, 319, DateTimeKind.Local).AddTicks(8273), "DLC incoming" });
+                values: new object[] { 1, "Elden Ring DLC is fast approaching and the new trailer has ignited a fierce online debate about Messmer The Impaler's origins. Messmer The Impaler is supposedly the big bad in the Shadow of the Erdtree expansion, as the Collector's Edition even dedicates a fully detailed figurine to the soon-to-be-boss. But the lore implications around Messmer have split the player base in two, between those who believe he was teased from the very beginning to those who think he's an entirely new creation made for the DLC. Messmer is the figure with several snakes peeking up out of his red robes. Pair that with the all-new landmark trees that are at the center of the new Land of Shadows map, coiled around each other chaotically, and the imagery is clear. Messmer is the Satan stand-in. He's the original sinner against the Erdtree. ", 2, false, new DateTime(2024, 3, 3, 14, 39, 20, 838, DateTimeKind.Local).AddTicks(7920), "DLC incoming" });
 
             migrationBuilder.InsertData(
                 table: "PlayersGamesReviews",

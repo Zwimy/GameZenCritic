@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameZenCritic.Core.Models.Home;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace GameZenCritic.Core.Contracts
 {
     public interface IGameService
     {
+        Task<TopGamesAndDevelopersViewModel> TopGamesInfoAsync();
     }
 }

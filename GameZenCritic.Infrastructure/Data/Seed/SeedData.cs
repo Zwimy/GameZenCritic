@@ -223,27 +223,39 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                 new Developer()
                 {
                     Id= 1,
-                    Name = "Epic Games"
+                    Name = "Epic Games",
+                    LogoLink = "https://logodownload.org/wp-content/uploads/2020/10/epic-games-logo-0.png",
+                    GameRep = 6
+                    
                 },
                 new Developer()
                 {
                     Id= 2,
-                    Name = "From Software"
+                    Name = "From Software",
+                    LogoLink = "https://gamingbolt.com/wp-content/uploads/2019/12/FromSoftware-logo.jpg",
+                    GameRep = 6
+
                 },
                 new Developer()
                 {
                     Id= 3,
-                    Name = "Larian Studios Games"
+                    Name = "Larian Studios Games",
+                    LogoLink = "https://www.gematsu.com/wp-content/uploads/2022/11/Company-Logo_Larian-Studios-320x456.png",
+                    GameRep = 8
                 },
                 new Developer()
                 {
                     Id= 4,
-                    Name = "CD Projekt Red Studio"
+                    Name = "CD Projekt Red Studio",
+                    LogoLink = "https://www.kitguru.net/wp-content/uploads/2016/03/cd-projekt-red-logo.png",
+                    GameRep = 7
                 },
                 new Developer()
                 {
                     Id= 5,
-                    Name = "SCE Santa Monica"
+                    Name = "SCE Santa Monica",
+                    LogoLink = "https://i.pinimg.com/564x/1e/5f/3d/1e5f3df1ca42e4719c459ac0792c6d53.jpg",
+                    GameRep = 7
                 },
             };
         }
@@ -257,7 +269,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                     Id = 1,
                     Name = "Gears of War",
                     Description = "Gears of War blends tactical action with survival horror and thrusts gamers into a deep and harrowing story of humankind's epic battle for survival against the Locust Horde, a nightmarish race of creatures that surface from the bowels of the planet.",
-                    Picture = "https://www.metacritic.com/a/img/resize/c2c2122b8f2a30ff7dacbdf98d3091c0a9f8088c/catalog/provider/6/12/6-1-68349-52.jpg",
+                    Picture = "https://twinfinite.net/wp-content/uploads/2023/01/Best-Xbox-360-Co-Op-Games.png?resize=1000%2C600",
                     ReleaseDate = DateTime.ParseExact("NOV 7 - 2006", "MMM d - yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None),
                     AgeRating = "Rated M for Mature",
                     AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
@@ -271,7 +283,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                     Id = 2,
                     Name = "Elden Ring",
                     Description = "A New World Created By Hidetaka Miyazaki And George R. R. Martin ELDEN RING, developed by FromSoftware, Inc. and BANDAI NAMCO Entertainment Inc.",
-                    Picture = "https://www.metacritic.com/a/img/resize/a7d9a5a01234b361785789476e073076a29dad5b/catalog/provider/6/3/6-1-824862-13.jpg",
+                    Picture = "https://th.bing.com/th/id/OIF.pwBY1yiS46uxscEVyfb5HQ?rs=1&pid=ImgDetMain",
                     ReleaseDate = DateTime.ParseExact("FEB 25 - 2022", "MMM d - yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None),
                     AgeRating = "Rated M for Mature",
                     AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
@@ -285,7 +297,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                     Id = 3,
                     Name = "Baldur's Gate 3",
                     Description = "An ancient evil has returned to Baldur's Gate, intent on devouring it from the inside out. The fate of Faerun lies in your hands. Alone, you may resist. But together, you can overcome.",
-                    Picture = "https://www.metacritic.com/a/img/resize/04973a32611600dace99c3638bd3b8f6a9e09477/catalog/provider/7/2/7-1695438055.jpg",
+                    Picture = "https://mcdn.wallpapersafari.com/medium/59/58/Bh5wWX.jpg",
                     ReleaseDate = DateTime.ParseExact("Aug 3 - 2023", "MMM d - yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None),
                     AgeRating = "Rated M for Mature",
                     AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
@@ -299,7 +311,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                     Id = 4,
                     Name = "The Witcher 3: Wild Hunt",
                     Description = "With the Empire attacking the Kingdoms of the North and the Wild Hunt, a cavalcade of ghastly riders, breathing down your neck, the only way to survive is to fight back. As Geralt of Rivia, a master swordsman and monster hunter, leave none of your enemies standing.",
-                    Picture = "https://pre00.deviantart.net/e81c/th/pre/f/2014/157/f/9/witcher_3_box_cover_warner_bros_variation_by_scratcherpen-d7l8i4h.png",
+                    Picture = "https://th.bing.com/th/id/OIP.ESLUrniRRUtzAk-LMGNjAAHaEK?pid=ImgDet&w=320&h=180&c=7",
                     ReleaseDate = DateTime.ParseExact("MAY 19 - 2015", "MMM d - yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None),
                     AgeRating = "Rated M for Mature",
                     AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",
@@ -313,7 +325,7 @@ namespace GameZenCritic.Infrastructure.Data.Seed
                     Id = 5,
                     Name = "God of War: Ragnarok",
                     Description = "The freezing winds of Fimbulwinter have come to Midgard, making survival for Kratos, Atreus, and Mimir in the Norse wilds even more challenging than before. ",
-                    Picture = "https://www.metacritic.com/a/img/resize/ca0bc42afe883be3a8bac27a19cf2f972fb07921/catalog/provider/6/3/6-1-905093-13.jpg",
+                    Picture = "https://th.bing.com/th/id/OIP.jcAkvpdxr_5gQW0dm6_7VQHaJH?pid=ImgDet&w=146.25&h=180&c=7",
                     ReleaseDate = DateTime.ParseExact("NOV 9 - 2022", "MMM d - yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None),
                     AgeRating = "Rated M for Mature",
                     AgeRatingPicture = "https://www.metacritic.com/a/neutron/images/logos/esrb/ESRB_2013_M_Rating.png",

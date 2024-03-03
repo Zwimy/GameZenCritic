@@ -9,17 +9,18 @@ namespace GameZenCritic.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IGameService _gameService;
+        private readonly IGameService gameService;
 
-        public HomeController(ILogger<HomeController> logger, IGameService gameService)
+        public HomeController(ILogger<HomeController> logger, IGameService _gameService)
         {
             _logger = logger;
-            _gameService = gameService;
+            gameService = _gameService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var model = await gameService.TopGamesInfoAsync();
+            return View(model);
         }
 
         public IActionResult Privacy()

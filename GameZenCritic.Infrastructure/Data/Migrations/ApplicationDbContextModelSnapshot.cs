@@ -39,6 +39,12 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                         .HasColumnType("bit")
                         .HasComment("Deletion flag");
 
+                    b.Property<string>("LogoLink")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)")
+                        .HasComment("Link to picture of Developer logo");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -55,36 +61,41 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                         new
                         {
                             Id = 1,
-                            GameRep = 0,
+                            GameRep = 6,
                             IsDeleted = false,
+                            LogoLink = "https://logodownload.org/wp-content/uploads/2020/10/epic-games-logo-0.png",
                             Name = "Epic Games"
                         },
                         new
                         {
                             Id = 2,
-                            GameRep = 0,
+                            GameRep = 6,
                             IsDeleted = false,
+                            LogoLink = "https://gamingbolt.com/wp-content/uploads/2019/12/FromSoftware-logo.jpg",
                             Name = "From Software"
                         },
                         new
                         {
                             Id = 3,
-                            GameRep = 0,
+                            GameRep = 8,
                             IsDeleted = false,
+                            LogoLink = "https://www.gematsu.com/wp-content/uploads/2022/11/Company-Logo_Larian-Studios-320x456.png",
                             Name = "Larian Studios Games"
                         },
                         new
                         {
                             Id = 4,
-                            GameRep = 0,
+                            GameRep = 7,
                             IsDeleted = false,
+                            LogoLink = "https://www.kitguru.net/wp-content/uploads/2016/03/cd-projekt-red-logo.png",
                             Name = "CD Projekt Red Studio"
                         },
                         new
                         {
                             Id = 5,
-                            GameRep = 0,
+                            GameRep = 7,
                             IsDeleted = false,
+                            LogoLink = "https://i.pinimg.com/564x/1e/5f/3d/1e5f3df1ca42e4719c459ac0792c6d53.jpg",
                             Name = "SCE Santa Monica"
                         });
                 });
@@ -175,7 +186,7 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                             GenreId = 1,
                             IsDeleted = false,
                             Name = "Gears of War",
-                            Picture = "https://www.metacritic.com/a/img/resize/c2c2122b8f2a30ff7dacbdf98d3091c0a9f8088c/catalog/provider/6/12/6-1-68349-52.jpg",
+                            Picture = "https://twinfinite.net/wp-content/uploads/2023/01/Best-Xbox-360-Co-Op-Games.png?resize=1000%2C600",
                             PublisherId = 1,
                             ReleaseDate = new DateTime(2006, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             TotalScore = 8m
@@ -190,7 +201,7 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                             GenreId = 4,
                             IsDeleted = false,
                             Name = "Elden Ring",
-                            Picture = "https://www.metacritic.com/a/img/resize/a7d9a5a01234b361785789476e073076a29dad5b/catalog/provider/6/3/6-1-824862-13.jpg",
+                            Picture = "https://th.bing.com/th/id/OIF.pwBY1yiS46uxscEVyfb5HQ?rs=1&pid=ImgDetMain",
                             PublisherId = 2,
                             ReleaseDate = new DateTime(2022, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             TotalScore = 9.5m
@@ -205,7 +216,7 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                             GenreId = 3,
                             IsDeleted = false,
                             Name = "Baldur's Gate 3",
-                            Picture = "https://www.metacritic.com/a/img/resize/04973a32611600dace99c3638bd3b8f6a9e09477/catalog/provider/7/2/7-1695438055.jpg",
+                            Picture = "https://mcdn.wallpapersafari.com/medium/59/58/Bh5wWX.jpg",
                             PublisherId = 3,
                             ReleaseDate = new DateTime(2023, 8, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             TotalScore = 9.3m
@@ -220,7 +231,7 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                             GenreId = 3,
                             IsDeleted = false,
                             Name = "The Witcher 3: Wild Hunt",
-                            Picture = "https://pre00.deviantart.net/e81c/th/pre/f/2014/157/f/9/witcher_3_box_cover_warner_bros_variation_by_scratcherpen-d7l8i4h.png",
+                            Picture = "https://th.bing.com/th/id/OIP.ESLUrniRRUtzAk-LMGNjAAHaEK?pid=ImgDet&w=320&h=180&c=7",
                             PublisherId = 4,
                             ReleaseDate = new DateTime(2015, 5, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             TotalScore = 9.0m
@@ -235,7 +246,7 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                             GenreId = 4,
                             IsDeleted = false,
                             Name = "God of War: Ragnarok",
-                            Picture = "https://www.metacritic.com/a/img/resize/ca0bc42afe883be3a8bac27a19cf2f972fb07921/catalog/provider/6/3/6-1-905093-13.jpg",
+                            Picture = "https://th.bing.com/th/id/OIP.jcAkvpdxr_5gQW0dm6_7VQHaJH?pid=ImgDet&w=146.25&h=180&c=7",
                             PublisherId = 5,
                             ReleaseDate = new DateTime(2022, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             TotalScore = 8.1m
@@ -415,7 +426,7 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                             Description = "Elden Ring DLC is fast approaching and the new trailer has ignited a fierce online debate about Messmer The Impaler's origins. Messmer The Impaler is supposedly the big bad in the Shadow of the Erdtree expansion, as the Collector's Edition even dedicates a fully detailed figurine to the soon-to-be-boss. But the lore implications around Messmer have split the player base in two, between those who believe he was teased from the very beginning to those who think he's an entirely new creation made for the DLC. Messmer is the figure with several snakes peeking up out of his red robes. Pair that with the all-new landmark trees that are at the center of the new Land of Shadows map, coiled around each other chaotically, and the imagery is clear. Messmer is the Satan stand-in. He's the original sinner against the Erdtree. ",
                             GameId = 2,
                             IsDeleted = false,
-                            PublishDate = new DateTime(2024, 3, 2, 20, 51, 24, 319, DateTimeKind.Local).AddTicks(8273),
+                            PublishDate = new DateTime(2024, 3, 3, 14, 39, 20, 838, DateTimeKind.Local).AddTicks(7920),
                             Title = "DLC incoming"
                         });
                 });
@@ -641,7 +652,7 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                             Id = 1,
                             Details = "This is the greatest game ever made!",
                             IsDeleted = false,
-                            PublishDate = new DateTime(2024, 3, 2, 20, 51, 24, 305, DateTimeKind.Local).AddTicks(564),
+                            PublishDate = new DateTime(2024, 3, 3, 14, 39, 20, 823, DateTimeKind.Local).AddTicks(8937),
                             Score = 10
                         },
                         new
@@ -649,7 +660,7 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                             Id = 2,
                             Details = "Was an OK shooter, but overhyped.",
                             IsDeleted = false,
-                            PublishDate = new DateTime(2024, 3, 2, 20, 51, 24, 305, DateTimeKind.Local).AddTicks(594),
+                            PublishDate = new DateTime(2024, 3, 3, 14, 39, 20, 823, DateTimeKind.Local).AddTicks(8963),
                             Score = 7
                         });
                 });
@@ -873,15 +884,15 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                         {
                             Id = "dea12856-c198-4129-b3f3-b893d8395085",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e9da3af7-3161-43e8-9363-9bcd2cc0af0f",
+                            ConcurrencyStamp = "cb03b33f-fa02-41b5-84ef-eccaa2c576f3",
                             Email = "player@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "player@mail.com",
                             NormalizedUserName = "player@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFn8Q8R3vNNYSkLt2eOS9cpwT9tmI3gVRtw7BsaVtbUmSdYiIvneZouwovk31NZ9lA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBjNQ+YWA1Wp7/g+nML0e/6N2Lwm36inXR84tbauIVfLqzvR+D2bgOEN0jQZ2U/lOQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "390fed78-8282-4bff-9ee7-f3e8a67f0a3c",
+                            SecurityStamp = "aa357e0f-8f0d-4be2-bc53-e256f0e5f10a",
                             TwoFactorEnabled = false,
                             UserName = "player@mail.com"
                         },
@@ -889,15 +900,15 @@ namespace GameZenCritic.Infrastructure.Data.Migrations
                         {
                             Id = "fea12856-c198-4129-b3f3-b893d8395080",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c1934ad7-6187-4b5c-b410-9862a4f0e1f4",
+                            ConcurrencyStamp = "48667189-ecdc-4f7c-a386-2525fdb4805e",
                             Email = "player2@mail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "player2@mail.com",
                             NormalizedUserName = "player2@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPjNi/g0ibIK8GGqICJ+rIr0H3EOVxA8yu/m1iAgpgFEVctnWNOp0+9cFkfDX6dBuQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDskwUFo1HR/6snL+JfS9oE1JKWOxx9lCIa4m2I/Z0LRbHD6B5OIMI2Z9rsFGC2yTQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8652fc4b-aa12-42b9-ac1f-7fa1d0ca1e39",
+                            SecurityStamp = "5e2ab7c1-7303-4ae6-8141-fa2796d35a03",
                             TwoFactorEnabled = false,
                             UserName = "player2@mail.com"
                         });
