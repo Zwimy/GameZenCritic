@@ -1,4 +1,7 @@
-﻿using GameZenCritic.Infrastructure.Data;
+﻿using GameZenCritic.Core.Contracts;
+using GameZenCritic.Core.Services;
+using GameZenCritic.Infrastructure.Data;
+using GameZenCritic.Infrastructure.Data.Common;
 using GameZenCritic.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +12,8 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            services.AddScoped<IGameService, GameService>();
+
             return services;
         }
 
@@ -17,6 +22,8 @@ namespace Microsoft.Extensions.DependencyInjection
             var connectionString = config.GetConnectionString("DefaultConnection");
             services.AddDbContext<GameZenDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
+            services.AddScoped<IRepository, Repository>();
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
