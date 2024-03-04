@@ -1,0 +1,35 @@
+﻿@model IEnumerable<DeveloperInfoViewModel>
+@{
+    ViewData["Title"] = "Developers";
+}
+
+@if (!Model.Any())
+{
+    <div class="mt-4 p-5 bg-light">
+        <h1 class="display-4">Welcome to GameZenReviews!</h1>
+        <p class="lead">
+            There are no Developers added currently. Please keep an eye out in the future!
+        </p>
+        <hr class="my-4">
+    </div>
+}
+
+
+<h2 class="text-center">List of Developers</h2>
+
+<div class="d-flex justify-content-center align-items-center">
+    <div class="card-columns">
+        @foreach (var developer in Model)
+        {
+            <a asp-controller="Developer" asp-action="Details" asp-route-id="@developer.Id" class="card-link">
+                <div class="card" style="width: 15rem; max-width: 100%;">
+                    <img src="@developer.LogoLink" class="card-img-top" alt="Developer Logo" style="aspect-ratio: 4/3; max-height: 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">@developer.Name</h5>
+                        <p class="card-text text-center">Average Games Score: @developer.GameRep</p>
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+</div>

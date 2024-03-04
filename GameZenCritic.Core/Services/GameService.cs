@@ -1,5 +1,6 @@
 ﻿using GameZenCritic.Core.Contracts;
 using GameZenCritic.Core.Models.Home;
+using GameZenCritic.Core.Models.Game;
 using GameZenCritic.Infrastructure.Data.Common;
 using GameZenCritic.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
@@ -14,32 +15,24 @@ namespace GameZenCritic.Core.Services
     public class GameService : IGameService
     {
         private readonly IRepository repository;
+        private readonly IDeveloperService developerService;
 
-        public GameService(IRepository _repository)
+        public GameService(IRepository _repository, IDeveloperService _developerService)
         {
             repository = _repository;
+            developerService = _developerService;
         }
 
         public async Task<TopGamesAndDevelopersViewModel> TopGamesInfoAsync()
         {
             var topInfo = new TopGamesAndDevelopersViewModel();
 
-            topInfo.TopDeveloper = await repository.AllReadOnly<Developer>()
-                .OrderByDescending(d => d.GameRep)
-                .Take(1)
-                .Select(d => new Models.Developer.DeveloperInfoViewModel()
-                {
-                    Id = d.Id,
-                    Name = d.Name,
-                    GameRep = d.GameRep,
-                    LogoLink = d.LogoLink,
-                })
-                .FirstAsync();
-                
+            topInfo.TopDeveloper = await developerService.GetTopDeveloperInfoAsync();
+
             topInfo.Games = await repository.AllReadOnly<Game>()
                 .OrderByDescending(g=>g.TotalScore)
                 .Take(3)
-                .Select(g=> new Models.Game.GameShortInfoViewModel()
+                .Select(g=> new GameShortInfoViewModel()
                 {
                     Id=g.Id,
                     Name = g.Name,
