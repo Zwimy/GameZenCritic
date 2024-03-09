@@ -1,5 +1,6 @@
 ﻿using GameZenCritic.Core.Contracts;
 using GameZenCritic.Core.Models.Developer;
+using GameZenCritic.Core.Models.Game;
 using GameZenCritic.Infrastructure.Data.Common;
 using GameZenCritic.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
@@ -50,9 +51,31 @@ namespace GameZenCritic.Core.Services
                 .ToListAsync();
         }
 
-        public Task<DeveloperInfoViewModel> GetByIdAsync()
+        public async Task<DeveloperDetailsViewModel> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var devInfo =  await repository.AllReadOnly<Developer>()
+                .Where(d => d.Id == id)
+                .Select(d => new DeveloperDetailsViewModel()
+                {
+                    Id = d.Id,
+                    Name = d.Name,
+                    GameRep = d.GameRep,
+                    LogoLink = d.LogoLink,
+                })
+                .FirstAsync();
+
+            devInfo.Games = await repository.AllReadOnly<Game>()
+                .Where (g => g.DeveloperId == id)
+                .Select(g=> new GameShortInfoViewModel()
+                {
+                    Id= g.Id,
+                    Name = g.Name,
+                    Picture = g.Picture,
+                    TotalScore = g.TotalScore,
+                })
+                .ToListAsync();
+
+            return devInfo;
         }
     }
 }

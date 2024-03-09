@@ -1,0 +1,53 @@
+﻿@model PaginatedList<GameShortInfoViewModel>
+
+<h2>List of Games</h2>
+
+<div class="card-columns">
+    @foreach (var game in Model.Items)
+    {
+        <a asp-controller="Games" asp-action="Details" asp-route-id="@game.Id" class="card-link">
+            <div class="card">
+                <img src="@game.Picture" class="card-img-top" alt="Game Box Art" style="aspect-ratio: 4/3; max-height: 100%;">
+                <div class="card-body">
+                    <h5 class="card-title text-center">@game.Name</h5>
+                    <p class="card-text text-center">
+                        <strong>@Html.DisplayNameFor(model => game.TotalScore):</strong> @game.TotalScore
+                    </p>
+                </div>
+            </div>
+        </a>
+    }
+</div>
+
+<div class="mt-4">
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <li class="page-item @(Model.Page == 1 ? "disabled" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = 1, pageSize = Model.PageSize })" aria-label="First">
+                    <span aria-hidden="true">&laquo;&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item @(Model.Page == 1 ? "disabled" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = Model.Page - 1, pageSize = Model.PageSize })" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.Page ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("Index", new { page = i, pageSize = Model.PageSize })">@i</a>
+                </li>
+            }
+            <li class="page-item @(Model.Page == Model.TotalPages ? "disabled" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = Model.Page + 1, pageSize = Model.PageSize })" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            <li class="page-item @(Model.Page == Model.TotalPages ? "disabled" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = Model.TotalPages, pageSize = Model.PageSize })" aria-label="Last">
+                    <span aria-hidden="true">&raquo;&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

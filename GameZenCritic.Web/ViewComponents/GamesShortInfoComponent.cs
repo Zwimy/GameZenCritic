@@ -1,6 +1,10 @@
-﻿using GameZenCritic.Core.Contracts;
+﻿using GameZenCritic.Core.Constants;
+using GameZenCritic.Core.Contracts;
+using GameZenCritic.Core.Extensions;
 using GameZenCritic.Core.Models.Game;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using static GameZenCritic.Core.Constants.LogicConstants;
 
 namespace GameZenCritic.Web.ViewComponents
 {
@@ -13,20 +17,15 @@ namespace GameZenCritic.Web.ViewComponents
             gameService = _gameService;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(IEnumerable<GameShortInfoViewModel> games)
         {
-            IEnumerable<GameShortInfoViewModel> model = await gameService.AllAsync();
-            return await Task.FromResult<IViewComponentResult>(View(model));
-        }
+            //IEnumerable<GameShortInfoViewModel> model = await gameService.AllAsync();
+            //return await Task.FromResult<IViewComponentResult>(View(model));
 
-        /// <summary>
-        /// games by specific developer
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public async Task<IViewComponentResult> InvokeAsync(int id)
-        {
-            IEnumerable<GameShortInfoViewModel> model = await gameService.ByDevIdAsync(id);
+            var paginatedGames = games.Skip((StartPage - PageNext) * PageSize).Take(PageSize);
+
+            var model = new PaginatedList<GameShortInfoViewModel>(paginatedGames, games.Count(), StartPage, PageSize);
+
             return await Task.FromResult<IViewComponentResult>(View(model));
         }
     }

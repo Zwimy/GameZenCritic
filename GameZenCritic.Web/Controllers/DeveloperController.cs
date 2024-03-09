@@ -20,9 +20,10 @@ namespace GameZenCritic.Web.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Details()
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            var model = await developerService.GetByIdAsync(id);
+            return View(model);
         }
     }
 }
