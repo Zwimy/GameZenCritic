@@ -22,7 +22,6 @@ namespace GameZenCritic.Web.Controllers
 
         public async Task<IActionResult> Details()
         {
-
             return View();
         }
     }

@@ -20,6 +20,8 @@ namespace GameZenCritic.Core.Services
             repository = _repository;
         }
 
+
+
         public async Task<DeveloperInfoViewModel> GetTopDeveloperInfoAsync()
         {
             return await repository.AllReadOnly<Developer>()
@@ -46,6 +48,11 @@ namespace GameZenCritic.Core.Services
                     LogoLink = d.LogoLink,
                 })
                 .ToListAsync();
+        }
+
+        public Task<DeveloperInfoViewModel> GetByIdAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

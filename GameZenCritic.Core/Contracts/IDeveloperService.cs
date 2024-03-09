@@ -11,5 +11,7 @@ namespace GameZenCritic.Core.Contracts
     {
         Task <IEnumerable<DeveloperInfoViewModel>> GetAllAsync();
         Task <DeveloperInfoViewModel> GetTopDeveloperInfoAsync ();
+
+        Task<DeveloperInfoViewModel> GetByIdAsync();
     }
 }

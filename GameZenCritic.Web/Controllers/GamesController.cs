@@ -4,7 +4,7 @@ namespace GameZenCritic.Web.Controllers
 {
     public class GamesController : Controller
     {
-        public IActionResult Index()
+        public IActionResult All()
         {
             return View();
         }

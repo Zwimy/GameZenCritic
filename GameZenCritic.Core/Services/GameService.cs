@@ -23,6 +23,35 @@ namespace GameZenCritic.Core.Services
             developerService = _developerService;
         }
 
+        public async Task<IEnumerable<GameShortInfoViewModel>> AllAsync()
+        {
+            return await repository.AllReadOnly<Game>()
+                .OrderByDescending(g => g.ReleaseDate)
+                .Select(g=> new GameShortInfoViewModel()
+                {
+                    Id = g.Id,
+                    Name = g.Name,
+                    Picture = g.Picture,
+                    TotalScore = g.TotalScore,
+                })
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<GameShortInfoViewModel>> ByDevIdAsync(int id)
+        {
+            return await repository.AllReadOnly<Game>()
+                .Where(g => g.DeveloperId == id)
+                .OrderByDescending(g => g.ReleaseDate)
+                .Select(g => new GameShortInfoViewModel()
+                {
+                    Id = g.Id,
+                    Name = g.Name,
+                    Picture = g.Picture,
+                    TotalScore = g.TotalScore,
+                })
+                .ToListAsync();
+        }
+
         public async Task<TopGamesAndDevelopersViewModel> TopGamesInfoAsync()
         {
             var topInfo = new TopGamesAndDevelopersViewModel();

@@ -1,4 +1,5 @@
-﻿using GameZenCritic.Core.Models.Home;
+﻿using GameZenCritic.Core.Models.Game;
+using GameZenCritic.Core.Models.Home;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace GameZenCritic.Core.Contracts
 {
     public interface IGameService
     {
+        Task<IEnumerable<GameShortInfoViewModel>> AllAsync();
+        Task<IEnumerable<GameShortInfoViewModel>> ByDevIdAsync(int id);
         Task<TopGamesAndDevelopersViewModel> TopGamesInfoAsync();
     }
 }
