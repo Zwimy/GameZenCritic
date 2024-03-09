@@ -10,23 +10,22 @@ namespace GameZenCritic.Web.ViewComponents
 {
     public class GamesShortInfoComponent : ViewComponent
     {
-        private readonly IGameService gameService;
-
-        public GamesShortInfoComponent(IGameService _gameService)
-        {
-            gameService = _gameService;
-        }
-
-        public async Task<IViewComponentResult> InvokeAsync(IEnumerable<GameShortInfoViewModel> games)
+        public async Task<IViewComponentResult> InvokeAsync(PaginatedList<GameShortInfoViewModel> games)
         {
             //IEnumerable<GameShortInfoViewModel> model = await gameService.AllAsync();
             //return await Task.FromResult<IViewComponentResult>(View(model));
 
-            var paginatedGames = games.Skip((StartPage - PageNext) * PageSize).Take(PageSize);
+            //int count = games.Count();
 
-            var model = new PaginatedList<GameShortInfoViewModel>(paginatedGames, games.Count(), StartPage, PageSize);
+            //var paginatedGames = games.OrderBy(g=>g.ReleaseDate).Skip((StartPage - PageNext) * PageSize).Take(PageSize);
 
-            return await Task.FromResult<IViewComponentResult>(View(model));
+            //var model = new PaginatedList<GameShortInfoViewModel>(paginatedGames, games.Count(), StartPage, PageSize);
+
+            //this.ViewBag.MaxPage = (count / PageSize) - (count % PageSize == 0 ? 1 : 0);
+
+            //this.ViewBag.Page = 0;
+
+            return await Task.FromResult<IViewComponentResult>(View(games));
         }
     }
 }

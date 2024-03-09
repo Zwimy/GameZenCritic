@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static GameZenCritic.Core.Constants.LogicConstants;
 
 namespace GameZenCritic.Core.Services
 {
@@ -33,6 +34,7 @@ namespace GameZenCritic.Core.Services
                     Name = g.Name,
                     Picture = g.Picture,
                     TotalScore = g.TotalScore,
+                    ReleaseDate = g.ReleaseDate,
                 })
                 .ToListAsync();
         }

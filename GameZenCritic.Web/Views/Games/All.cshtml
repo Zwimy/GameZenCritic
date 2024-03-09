@@ -1,1 +1,37 @@
-﻿@await Component.InvokeAsync(nameof(GamesShortInfoComponent))
+﻿@model PaginatedList<GameShortInfoViewModel>
+
+@await Component.InvokeAsync(nameof(GamesShortInfoComponent), Model)
+
+
+<div class="mt-4">
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <li class="page-item @(Model.Page == 1 ? "disabled" : "")">
+                <a class="page-link" asp-controller="Games" asp-action="All" asp-route-page="1" aria-label="First">
+                    <span aria-hidden="true">&laquo;&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item @(Model.Page == 1 ? "disabled" : "")">
+                <a class="page-link" asp-controller="Games" asp-action="All" asp-route-page="@Model.Page--" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.Page ? "active" : "")">
+                    <a class="page-link" asp-controller="Games" asp-action="All" asp-route-page="@i">@i</a>
+                </li>
+            }
+            <li class="page-item @(Model.Page == Model.TotalPages ? "disabled" : "")">
+                <a class="page-link" asp-controller="Games" asp-action="All" asp-route-page="@Model.Page++" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            <li class="page-item @(Model.Page == Model.TotalPages ? "disabled" : "")">
+                <a class="page-link" asp-controller="Games" asp-action="All" asp-route-page="@Model.TotalPages" aria-label="Last">
+                    <span aria-hidden="true">&raquo;&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

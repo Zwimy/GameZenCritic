@@ -37,5 +37,7 @@ namespace GameZenCritic.Core.Models.Game
         [Display(Name = "Game score")]
         public decimal TotalScore { get; set; } = 0m;
 
+        public DateTime ReleaseDate { get; set; }
+
     }
 }

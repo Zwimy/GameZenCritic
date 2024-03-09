@@ -8,10 +8,10 @@ namespace GameZenCritic.Core.Extensions
 {
     public class PaginatedList<T>
     {
-        public IEnumerable<T> Items { get; }
-        public int TotalItems { get; }
-        public int Page { get; }
-        public int PageSize { get; }
+        public IEnumerable<T>? Items { get; set; }
+        public int TotalItems { get; set; }
+        public int Page { get; set; }
+        public int PageSize { get; set; }
         public int TotalPages => (int)Math.Ceiling(TotalItems / (double)PageSize);
 
         public PaginatedList(IEnumerable<T> items, int totalItems, int page, int pageSize)
@@ -20,6 +20,10 @@ namespace GameZenCritic.Core.Extensions
             TotalItems = totalItems;
             Page = page;
             PageSize = pageSize;
+        }
+
+        public PaginatedList()
+        {
         }
     }
 }

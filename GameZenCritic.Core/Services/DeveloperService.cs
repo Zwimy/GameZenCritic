@@ -1,4 +1,5 @@
 ﻿using GameZenCritic.Core.Contracts;
+using GameZenCritic.Core.Extensions;
 using GameZenCritic.Core.Models.Developer;
 using GameZenCritic.Core.Models.Game;
 using GameZenCritic.Infrastructure.Data.Common;
@@ -9,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace GameZenCritic.Core.Services
 {

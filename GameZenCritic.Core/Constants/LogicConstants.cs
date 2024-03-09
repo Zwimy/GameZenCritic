@@ -9,7 +9,7 @@ namespace GameZenCritic.Core.Constants
     public static class LogicConstants
     {
         public const int StartPage = 1;
-        public const int PageSize = 4;
+        public const int PageSize = 3;
         public const int PageNext = 1;
     }
 }

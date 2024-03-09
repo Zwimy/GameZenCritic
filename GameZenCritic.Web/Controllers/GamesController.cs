@@ -1,5 +1,8 @@
 ﻿using GameZenCritic.Core.Contracts;
+using GameZenCritic.Core.Extensions;
+using GameZenCritic.Core.Models.Game;
 using Microsoft.AspNetCore.Mvc;
+using static GameZenCritic.Core.Constants.LogicConstants;
 
 namespace GameZenCritic.Web.Controllers
 {
@@ -14,9 +17,16 @@ namespace GameZenCritic.Web.Controllers
             gameService = _gameService;
         }
 
-        public IActionResult All()
+        public async Task<IActionResult> All(int page = StartPage)
         {
-            return View();
+            var modelBase = await gameService.AllAsync();
+            int count = modelBase.Count();
+
+            var paginatedGames = modelBase.OrderBy(g => g.ReleaseDate).Skip((page - StartPage) * PageSize).Take(PageSize);
+
+            var model = new PaginatedList<GameShortInfoViewModel>(paginatedGames, modelBase.Count(), page, PageSize);
+
+            return View(model);
         }
     }
 }

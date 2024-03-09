@@ -1,10 +1,12 @@
-﻿using GameZenCritic.Core.Models.Game;
+﻿using GameZenCritic.Core.Extensions;
+using GameZenCritic.Core.Models.Game;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace GameZenCritic.Core.Models.Developer
 {
@@ -29,8 +31,11 @@ namespace GameZenCritic.Core.Models.Developer
         /// <summary>
         /// Link to picture of Developer logo
         /// </summary>
+        [Display(Name = "Logo")]
         public string LogoLink { get; set; } = string.Empty;
 
         public IEnumerable<GameShortInfoViewModel> Games { get; set; } = new List<GameShortInfoViewModel>();
+
+        public PaginatedList<GameShortInfoViewModel> PaginatedGames { get; set; } = new PaginatedList<GameShortInfoViewModel>();
     }
 }
