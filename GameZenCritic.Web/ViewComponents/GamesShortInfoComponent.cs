@@ -10,7 +10,7 @@ namespace GameZenCritic.Web.ViewComponents
 {
     public class GamesShortInfoComponent : ViewComponent
     {
-        public async Task<IViewComponentResult> InvokeAsync(PaginatedList<GameShortInfoViewModel> games)
+        public async Task<IViewComponentResult> InvokeAsync(IEnumerable<GameShortInfoViewModel> games)
         {
             //IEnumerable<GameShortInfoViewModel> model = await gameService.AllAsync();
             //return await Task.FromResult<IViewComponentResult>(View(model));

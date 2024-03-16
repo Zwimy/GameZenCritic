@@ -24,18 +24,66 @@ namespace GameZenCritic.Core.Services
             developerService = _developerService;
         }
 
-        public async Task<IEnumerable<GameShortInfoViewModel>> AllAsync()
+        // to-do cleanup
+        //public async Task<IEnumerable<GameShortInfoViewModel>> AllAsync()
+        //{
+        //    return await repository.AllReadOnly<Game>()
+        //        .OrderByDescending(g => g.ReleaseDate)
+        //        .Select(g=> new GameShortInfoViewModel()
+        //        {
+        //            Id = g.Id,
+        //            Name = g.Name,
+        //            Picture = g.Picture,
+        //            TotalScore = g.TotalScore,
+        //            ReleaseDate = g.ReleaseDate,
+        //        })
+        //        .ToListAsync();
+        //}
+
+        public async Task<AllGamesQueryModel> AllAsync(string? genre = null, string? searchTerm = null, int currentPage = 1, int gamesPerPage = 3)
         {
-            return await repository.AllReadOnly<Game>()
-                .OrderByDescending(g => g.ReleaseDate)
-                .Select(g=> new GameShortInfoViewModel()
-                {
-                    Id = g.Id,
-                    Name = g.Name,
-                    Picture = g.Picture,
-                    TotalScore = g.TotalScore,
-                    ReleaseDate = g.ReleaseDate,
-                })
+            var gamesToShow = repository.AllReadOnly<Game>();
+
+            if (genre != null)
+            {
+                gamesToShow = gamesToShow
+                    .Where(g => g.Genre.Name == genre);
+            }
+
+            if (searchTerm != null)
+            {
+                string normalizedSearchTerm = searchTerm.ToLower();
+                gamesToShow = gamesToShow
+                    .Where(g => (g.Name.ToLower().Contains(normalizedSearchTerm) ||
+                                g.Publisher.Name.ToLower().Contains(normalizedSearchTerm) ||
+                                g.Developer.Name.ToLower().Contains(normalizedSearchTerm) ||
+                                g.Description.ToLower().Contains(normalizedSearchTerm)));
+            }
+
+            gamesToShow = gamesToShow.OrderByDescending(g => g.ReleaseDate);
+
+            var games = await gamesToShow
+                .Skip((currentPage - 1) * gamesPerPage)
+                .Take(gamesPerPage)
+                .ProjectToGameServiceModel()
+                .ToListAsync();
+
+            int totalGames = await gamesToShow.CountAsync();
+            int totalPages = (int)Math.Ceiling((decimal)totalGames / (decimal)gamesPerPage);
+
+            return new AllGamesQueryModel()
+            {
+                Games = games,
+                TotalGamesCount = totalGames,
+                TotalPages = totalPages
+            };
+        }
+
+        public async Task<IEnumerable<string>> AllGenresNamesAsync()
+        {
+            return await repository.AllReadOnly<Genre>()
+                .Select(g => g.Name)
+                .Distinct()
                 .ToListAsync();
         }
 

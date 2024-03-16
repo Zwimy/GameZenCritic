@@ -1,9 +1,9 @@
-﻿@model PaginatedList<GameShortInfoViewModel>
+﻿@model IEnumerable<GameShortInfoViewModel>
 
 <h2>List of Games</h2>
 
 <div class="card-columns">
-    @foreach (var game in Model.Items)
+    @foreach (var game in Model)
     {
         <a asp-controller="Games" asp-action="Details" asp-route-id="@game.Id" class="card-link">
             <div class="card">

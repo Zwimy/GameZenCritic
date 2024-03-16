@@ -10,8 +10,15 @@ namespace GameZenCritic.Core.Contracts
 {
     public interface IGameService
     {
-        Task<IEnumerable<GameShortInfoViewModel>> AllAsync();
+        Task<AllGamesQueryModel> AllAsync(
+            string? category = null,
+            string? searchTerm = null,
+            int currentPage = 1,
+            int gamesPerPage = 3);
+
         Task<IEnumerable<GameShortInfoViewModel>> ByDevIdAsync(int id);
         Task<TopGamesAndDevelopersViewModel> TopGamesInfoAsync();
+
+        Task<IEnumerable<string>> AllGenresNamesAsync();
     }
 }

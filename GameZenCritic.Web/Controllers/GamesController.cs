@@ -17,14 +17,20 @@ namespace GameZenCritic.Web.Controllers
             gameService = _gameService;
         }
 
-        public async Task<IActionResult> All(int page = StartPage)
+        [HttpGet]
+        public async Task<IActionResult> All([FromQuery] AllGamesQueryModel model)
         {
-            var modelBase = await gameService.AllAsync();
-            int count = modelBase.Count();
+            //var gameList = await gameService.AllAsync();
+            var games = await gameService.AllAsync(
+                model.Genre,
+                model.SearchTerm,
+                model.Page,
+                model.GamesPerPage);
 
-            var paginatedGames = modelBase.OrderBy(g => g.ReleaseDate).Skip((page - StartPage) * PageSize).Take(PageSize);
-
-            var model = new PaginatedList<GameShortInfoViewModel>(paginatedGames, modelBase.Count(), page, PageSize);
+            model.TotalGamesCount = games.TotalGamesCount;
+            model.TotalPages = games.TotalPages;
+            model.Games = games.Games;
+            model.Genres = await gameService.AllGenresNamesAsync();
 
             return View(model);
         }
