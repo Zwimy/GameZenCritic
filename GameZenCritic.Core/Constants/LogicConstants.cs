@@ -11,5 +11,7 @@ namespace GameZenCritic.Core.Constants
         public const int StartPage = 1;
         public const int PageSize = 3;
         public const int PageNext = 1;
+        public const int GamesPerPage = 3;
+        public const int NewsItemsPerPage = 15;
     }
 }

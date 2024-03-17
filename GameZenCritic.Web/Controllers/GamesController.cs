@@ -25,9 +25,9 @@ namespace GameZenCritic.Web.Controllers
                 model.Genre,
                 model.SearchTerm,
                 model.Page,
-                model.GamesPerPage);
+                model.ItemsPerPage);
 
-            model.TotalGamesCount = games.TotalGamesCount;
+            model.TotalCount = games.TotalCount;
             model.TotalPages = games.TotalPages;
             model.Games = games.Games;
             model.Genres = await gameService.AllGenresNamesAsync();

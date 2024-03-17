@@ -56,7 +56,7 @@ namespace GameZenCritic.Core.Services
             return new AllGamesQueryModel()
             {
                 Games = games,
-                TotalGamesCount = totalGames,
+                TotalCount = totalGames,
                 TotalPages = totalPages
             };
         }
