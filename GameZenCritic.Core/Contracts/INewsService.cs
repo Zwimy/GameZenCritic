@@ -12,16 +12,11 @@ namespace GameZenCritic.Core.Contracts
     {
         Task<AllNewsQueryViewModel> GetAllAsync(
             string? searchTerm = null,
-            int currentPage = 1
+            int currentPage = 1,
+            int? gameId = null
             );
 
-        Task<AllNewsQueryViewModel> GetByGameIdAsync(
-            int gameId,
-            string? searchTerm = null,
-            int currentPage = 1
-            );
-
-        Task<NewsDetailViewModel> GetByNewsIdAsync(int id);
+        Task<NewsDetailViewModel?> GetByNewsIdAsync(int id);
 
     }
 }

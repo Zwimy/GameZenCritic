@@ -13,6 +13,8 @@ namespace GameZenCritic.Core.Models.News
     {
         public override int ItemsPerPage { get; } = NewsItemsPerPage;
 
+        public int? GameId { get; set; } = null;
+
         public IEnumerable<NewsShortInfoViewModel> News { get; set; } = new List<NewsShortInfoViewModel>();
     }
 }

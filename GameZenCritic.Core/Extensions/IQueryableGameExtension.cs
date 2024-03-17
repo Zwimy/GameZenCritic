@@ -1,4 +1,5 @@
 ﻿using GameZenCritic.Core.Models.Game;
+using GameZenCritic.Core.Models.News;
 using GameZenCritic.Infrastructure.Data.Models;
 
 namespace System.Linq
@@ -15,6 +16,17 @@ namespace System.Linq
                     Picture = g.Picture,
                     TotalScore = g.TotalScore,
                     ReleaseDate = g.ReleaseDate,
+                });
+        }
+
+        public static IQueryable<NewsShortInfoViewModel> ProjectToNewsServiceModel(this IQueryable<News> news)
+        {
+            return news
+                .Select(g => new NewsShortInfoViewModel()
+                {
+                    Id = g.Id,
+                    Title = g.Title,
+                    PublishDate = g.PublishDate,
                 });
         }
     }
