@@ -13,7 +13,7 @@ namespace GameZenCritic.Core.Models.Contracts
         public virtual int ItemsPerPage { get; }
 
         [Display(Name = "Search by text")]
-        public virtual string SearchTerm { get; init; } = null!;
+        public virtual string? SearchTerm { get; init; } = null;
 
         public virtual int Page { get; set; } = StartPage;
         public virtual int TotalPages { get; set; }

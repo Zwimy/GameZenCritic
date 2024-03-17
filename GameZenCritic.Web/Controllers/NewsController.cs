@@ -29,10 +29,10 @@ namespace GameZenCritic.Web.Controllers
             model.TotalPages = news.TotalPages;
             model.News = news.News;
 
-            //if (!news.News.Any() || !ModelState.IsValid)
-            //{
-            //    return BadRequest();
-            //}
+            if (!model.News.Any() || !ModelState.IsValid)
+            {
+                return BadRequest();
+            }
 
             return View(model);
         }
