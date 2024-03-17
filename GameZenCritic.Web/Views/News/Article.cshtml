@@ -1,5 +1,13 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model NewsDetailViewModel
+
+<h2>@Model.Title</h2>
+
+<p><strong>Publish Date:</strong> @Model.PublishDate.ToString("yyyy-MMM-dd")</p>
+<p><strong>Description:</strong> @Model.Description</p>
+
+<p>
+    <strong>Associated Game:</strong> <a asp-controller="Games" 
+                                         asp-action="Details"
+                                         asp-route-gameId="@Model.GameId">
+                                         <strong>@Model.GameName</strong></a>
+</p>

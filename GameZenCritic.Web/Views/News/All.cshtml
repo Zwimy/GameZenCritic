@@ -1,5 +1,106 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model AllNewsQueryViewModel
+
+<form method="get">
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label asp-for="SearchTerm"></label>
+            <input asp-for="SearchTerm" class="form-control" placeholder="...">
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group mt-4 p-2">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Publish Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.News)
+        {
+            <tr>
+                <td><a asp-controller="News" asp-action="Article" asp-route-id=@item.Id>@item.Title</a></td>
+                <td>@item.PublishDate.ToString("yyyy-MMM-dd")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
 @{
+    var previousPage = Model.Page - 1;
+    if (previousPage < 1)
+    {
+        previousPage = 1;
+    }
+
+    var nextPage = Model.Page + 1;
+    if (nextPage < Model.TotalPages)
+    {
+        nextPage = Model.TotalPages;
+    }
 }
+
+<div class="mt-4">
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <li class="page-item @(Model.Page == 1 ? "disabled" : "")">
+                <a class="page-link" asp-controller="Games" asp-action="All"
+                   asp-route-searchTerm="@Model.SearchTerm"
+                   asp-route-page="1"
+                   asp-route-gameId="@Model.GameId"
+                   aria-label="First">
+                    <span aria-hidden="true">&laquo;&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item @(Model.Page == 1 ? "disabled" : "")">
+                <a class="page-link" asp-controller="Games" asp-action="All"
+                   asp-route-searchTerm="@Model.SearchTerm"
+                   asp-route-page="1"
+                   asp-route-gameId="@Model.GameId"
+                   aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            @for (int i = Model.Page - 2; i <= Model.TotalPages && i <= Model.Page + 2; i++)
+            {
+                @if (i > 0)
+                {
+                    <li class="page-item @(i == Model.Page ? "active" : "")">
+                        <a class="page-link" asp-controller="Games" asp-action="All"
+                           asp-route-searchTerm="@Model.SearchTerm"
+                           asp-route-page="@i"
+                           asp-route-gameId="@Model.GameId">
+                            @i
+                        </a>
+                    </li>
+                }
+            }
+
+            <li class="page-item @(Model.Page == Model.TotalPages ? "disabled" : "")">
+                <a class="page-link" asp-controller="Games" asp-action="All"
+                   asp-route-searchTerm="@Model.SearchTerm"
+                   asp-route-page="@nextPage"
+                   asp-route-gameId="@Model.GameId"
+                   aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            <li class="page-item @(Model.Page == Model.TotalPages ? "disabled" : "")">
+                <a class="page-link" asp-controller="Games" asp-action="All"
+                   asp-route-searchTerm="@Model.SearchTerm"
+                   asp-route-page="@Model.TotalPages"
+                   asp-route-gameId="@Model.GameId"
+                   aria-label="Last">
+                    <span aria-hidden="true">&raquo;&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

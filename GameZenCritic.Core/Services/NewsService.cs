@@ -77,6 +77,7 @@ namespace GameZenCritic.Core.Services
                 Title = articleDB.Title,
                 Description = articleDB.Description,
                 GameId = articleDB.GameId,
+                GameName = articleDB.Game.Name,
                 PublishDate = articleDB.PublishDate,
             };
 

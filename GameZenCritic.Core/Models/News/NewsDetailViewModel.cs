@@ -24,6 +24,8 @@ namespace GameZenCritic.Core.Models.News
         [Required]
         public int GameId { get; set; }
 
+        public string GameName { get; set; } = string.Empty;
+
         /// <summary>
         /// Title for the news article
         /// </summary>
