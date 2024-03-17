@@ -58,10 +58,10 @@
             </li>
             <li class="page-item @(Model.Page == 1 ? "disabled" : "")">
                 <a class="page-link" asp-controller="Games" asp-action="All"
-                   asp-route-page="@previousPage"
-                   asp-route-category="@Model.Genre"
-                   asp-route-searchTerm="@Model.SearchTerm" 
-                   aria-label="Previous">
+                    asp-route-page="@previousPage"
+                    asp-route-category="@Model.Genre"
+                    asp-route-searchTerm="@Model.SearchTerm" 
+                    aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
@@ -81,19 +81,19 @@
 
             <li class="page-item @(Model.Page == Model.TotalPages ? "disabled" : "")">
                 <a class="page-link" asp-controller="Games" asp-action="All"
-                   asp-route-page="@nextPage"
-                   asp-route-category="@Model.Genre"
-                   asp-route-searchTerm="@Model.SearchTerm"
-                   aria-label="Next">
+                    asp-route-page="@nextPage"
+                    asp-route-category="@Model.Genre"
+                    asp-route-searchTerm="@Model.SearchTerm"
+                    aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
             <li class="page-item @(Model.Page == Model.TotalPages ? "disabled" : "")">
                 <a class="page-link" asp-controller="Games" asp-action="All" 
-                asp-route-page="@Model.TotalPages"
-                   asp-route-category="@Model.Genre"
-                   asp-route-searchTerm="@Model.SearchTerm" 
-                   aria-label="Last">
+                    asp-route-page="@Model.TotalPages"
+                    asp-route-category="@Model.Genre"
+                    asp-route-searchTerm="@Model.SearchTerm" 
+                    aria-label="Last">
                     <span aria-hidden="true">&raquo;&raquo;</span>
                 </a>
             </li>

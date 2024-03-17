@@ -16,29 +16,11 @@ namespace GameZenCritic.Core.Services
     public class GameService : IGameService
     {
         private readonly IRepository repository;
-        private readonly IDeveloperService developerService;
 
-        public GameService(IRepository _repository, IDeveloperService _developerService)
+        public GameService(IRepository _repository)
         {
             repository = _repository;
-            developerService = _developerService;
         }
-
-        // to-do cleanup
-        //public async Task<IEnumerable<GameShortInfoViewModel>> AllAsync()
-        //{
-        //    return await repository.AllReadOnly<Game>()
-        //        .OrderByDescending(g => g.ReleaseDate)
-        //        .Select(g=> new GameShortInfoViewModel()
-        //        {
-        //            Id = g.Id,
-        //            Name = g.Name,
-        //            Picture = g.Picture,
-        //            TotalScore = g.TotalScore,
-        //            ReleaseDate = g.ReleaseDate,
-        //        })
-        //        .ToListAsync();
-        //}
 
         public async Task<AllGamesQueryModel> AllAsync(string? genre = null, string? searchTerm = null, int currentPage = 1, int gamesPerPage = 3)
         {
@@ -92,35 +74,17 @@ namespace GameZenCritic.Core.Services
             return await repository.AllReadOnly<Game>()
                 .Where(g => g.DeveloperId == id)
                 .OrderByDescending(g => g.ReleaseDate)
-                .Select(g => new GameShortInfoViewModel()
-                {
-                    Id = g.Id,
-                    Name = g.Name,
-                    Picture = g.Picture,
-                    TotalScore = g.TotalScore,
-                })
+                .ProjectToGameServiceModel()
                 .ToListAsync();
         }
 
-        public async Task<TopGamesAndDevelopersViewModel> TopGamesInfoAsync()
+        public async Task<IEnumerable<GameShortInfoViewModel>> TopGamesInfoAsync()
         {
-            var topInfo = new TopGamesAndDevelopersViewModel();
-
-            topInfo.TopDeveloper = await developerService.GetTopDeveloperInfoAsync();
-
-            topInfo.Games = await repository.AllReadOnly<Game>()
+            return await repository.AllReadOnly<Game>()
                 .OrderByDescending(g=>g.TotalScore)
                 .Take(3)
-                .Select(g=> new GameShortInfoViewModel()
-                {
-                    Id=g.Id,
-                    Name = g.Name,
-                    Picture = g.Picture,
-                    TotalScore = g.TotalScore,
-                })
+                .ProjectToGameServiceModel()
                 .ToListAsync();
-
-            return topInfo;
         }
     }
 }

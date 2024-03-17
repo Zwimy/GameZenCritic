@@ -1,4 +1,5 @@
 ﻿using GameZenCritic.Core.Contracts;
+using GameZenCritic.Core.Models.Home;
 using GameZenCritic.Core.Services;
 using GameZenCritic.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -10,16 +11,20 @@ namespace GameZenCritic.Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IGameService gameService;
+        private readonly IDeveloperService developerService;
 
-        public HomeController(ILogger<HomeController> logger, IGameService _gameService)
+        public HomeController(ILogger<HomeController> logger, IGameService _gameService, IDeveloperService _developerService)
         {
             _logger = logger;
             gameService = _gameService;
+            developerService = _developerService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var model = await gameService.TopGamesInfoAsync();
+            var model = new TopGamesAndDevelopersViewModel();
+            model.TopDeveloper = await developerService.GetTopDeveloperInfoAsync();
+            model.Games = await gameService.TopGamesInfoAsync();
             return View(model);
         }
 

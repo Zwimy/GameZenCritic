@@ -17,7 +17,7 @@ namespace GameZenCritic.Core.Contracts
             int gamesPerPage = 3);
 
         Task<IEnumerable<GameShortInfoViewModel>> ByDevIdAsync(int id);
-        Task<TopGamesAndDevelopersViewModel> TopGamesInfoAsync();
+        Task<IEnumerable<GameShortInfoViewModel>> TopGamesInfoAsync();
 
         Task<IEnumerable<string>> AllGenresNamesAsync();
     }

@@ -4,7 +4,12 @@ namespace GameZenCritic.Web.Controllers
 {
     public class NewsController : Controller
     {
-        public IActionResult Index()
+        public async Task<IActionResult> All()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Game(int id)
         {
             return View();
         }
