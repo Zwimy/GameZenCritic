@@ -63,23 +63,22 @@ namespace GameZenCritic.Core.Services
 
         public async Task<NewsDetailViewModel?> GetByNewsIdAsync(int id)
         {
-            var articleDB = await repository.AllReadOnly<News>()
+            var article = await repository.AllReadOnly<News>()
+                .Select(n=> new NewsDetailViewModel()
+                {
+                    Id = n.Id,
+                    Title = n.Title,
+                    Description = n.Description,
+                    GameId = n.GameId,
+                    GameName = n.Game.Name,
+                    PublishDate = n.PublishDate,
+                })
                 .FirstOrDefaultAsync(n=>n.Id == id);
 
-            if (articleDB == null)
+            if (article == null)
             {
                 return null;
             }
-
-            var article = new NewsDetailViewModel()
-            {
-                Id = articleDB.Id,
-                Title = articleDB.Title,
-                Description = articleDB.Description,
-                GameId = articleDB.GameId,
-                GameName = articleDB.Game.Name,
-                PublishDate = articleDB.PublishDate,
-            };
 
             return article;
         }
