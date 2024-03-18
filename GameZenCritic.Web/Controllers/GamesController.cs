@@ -1,5 +1,4 @@
 ﻿using GameZenCritic.Core.Contracts;
-using GameZenCritic.Core.Extensions;
 using GameZenCritic.Core.Models.Game;
 using Microsoft.AspNetCore.Mvc;
 using static GameZenCritic.Core.Constants.LogicConstants;
@@ -18,7 +17,7 @@ namespace GameZenCritic.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> All([FromQuery] AllGamesQueryModel model)
+        public async Task<IActionResult> All([FromQuery] AllGamesQueryViewModel model)
         {
             //var gameList = await gameService.AllAsync();
             var games = await gameService.AllAsync(
@@ -31,6 +30,13 @@ namespace GameZenCritic.Web.Controllers
             model.TotalPages = games.TotalPages;
             model.Games = games.Games;
             model.Genres = await gameService.AllGenresNamesAsync();
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Game([FromQuery] GameDetailsQueryViewModel model)
+        {
 
             return View(model);
         }

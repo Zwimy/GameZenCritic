@@ -9,7 +9,7 @@ using GameZenCritic.Core.Models.Contracts;
 
 namespace GameZenCritic.Core.Models.Game
 {
-    public class AllGamesQueryModel : QueryModel
+    public class AllGamesQueryViewModel : QueryModel
     {
         public override int ItemsPerPage { get; } = GamesPerPage;
 

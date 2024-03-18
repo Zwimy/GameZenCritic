@@ -10,7 +10,7 @@ namespace GameZenCritic.Core.Contracts
 {
     public interface IGameService
     {
-        Task<AllGamesQueryModel> AllAsync(
+        Task<AllGamesQueryViewModel> AllAsync(
             string? category = null,
             string? searchTerm = null,
             int currentPage = 1,

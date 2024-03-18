@@ -22,7 +22,7 @@ namespace GameZenCritic.Core.Services
             repository = _repository;
         }
 
-        public async Task<AllGamesQueryModel> AllAsync(string? genre = null, string? searchTerm = null, int currentPage = 1, int gamesPerPage = 3)
+        public async Task<AllGamesQueryViewModel> AllAsync(string? genre = null, string? searchTerm = null, int currentPage = 1, int gamesPerPage = 3)
         {
             var gamesToShow = repository.AllReadOnly<Game>();
 
@@ -45,7 +45,7 @@ namespace GameZenCritic.Core.Services
             gamesToShow = gamesToShow.OrderByDescending(g => g.ReleaseDate);
 
             var games = await gamesToShow
-                .Skip((currentPage - 1) * gamesPerPage)
+                .Skip((currentPage - PageNext) * gamesPerPage)
                 .Take(gamesPerPage)
                 .ProjectToGameServiceModel()
                 .ToListAsync();
@@ -53,7 +53,7 @@ namespace GameZenCritic.Core.Services
             int totalGames = await gamesToShow.CountAsync();
             int totalPages = (int)Math.Ceiling((decimal)totalGames / (decimal)gamesPerPage);
 
-            return new AllGamesQueryModel()
+            return new AllGamesQueryViewModel()
             {
                 Games = games,
                 TotalCount = totalGames,

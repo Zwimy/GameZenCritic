@@ -1,4 +1,4 @@
-﻿using GameZenCritic.Core.Extensions;
+﻿using GameZenCritic.Core.Models.Contracts;
 using GameZenCritic.Core.Models.Game;
 using System;
 using System.Collections.Generic;
@@ -6,11 +6,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static GameZenCritic.Core.Constants.LogicConstants;
 
 
 namespace GameZenCritic.Core.Models.Developer
 {
-    public class DeveloperDetailsViewModel
+    public class DeveloperDetailsQueryViewModel : QueryModel
     {
         /// <summary>
         /// Identifying key
@@ -34,8 +35,8 @@ namespace GameZenCritic.Core.Models.Developer
         [Display(Name = "Logo")]
         public string LogoLink { get; set; } = string.Empty;
 
-        public IEnumerable<GameShortInfoViewModel> Games { get; set; } = new List<GameShortInfoViewModel>();
+        public override int ItemsPerPage { get; } = PageSize;
 
-        public PaginatedList<GameShortInfoViewModel> PaginatedGames { get; set; } = new PaginatedList<GameShortInfoViewModel>();
+        public IEnumerable<GameShortInfoViewModel> Games { get; set; } = new List<GameShortInfoViewModel>();
     }
 }

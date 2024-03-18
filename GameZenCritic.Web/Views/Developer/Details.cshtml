@@ -1,4 +1,4 @@
-﻿@model DeveloperDetailsViewModel
+﻿@model DeveloperDetailsQueryViewModel
 
 <h2>@Model.Name</h2>
 
@@ -11,35 +11,63 @@
     </p>
 </div>
 
-@await Component.InvokeAsync(nameof(GamesShortInfoComponent),Model.PaginatedGames.Items)
+@await Component.InvokeAsync(nameof(GamesShortInfoComponent),Model.Games)
 
+@{
+    var previousPage = Model.Page - 1;
+    if (previousPage < 1)
+    {
+        previousPage = 1;
+    }
+
+    var nextPage = Model.Page + 1;
+    if (nextPage < Model.TotalPages)
+    {
+        nextPage = Model.TotalPages;
+    }
+}
 
 <div class="mt-4">
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
-            <li class="page-item @(Model.PaginatedGames.Page == 1 ? "disabled" : "")">
-                <a class="page-link" asp-controller="Developer" asp-action="Details" asp-route-id="@Model.Id" asp-route-page="1" aria-label="First">
+            <li class="page-item @(Model.Page == 1 ? "disabled" : "")">
+                <a class="page-link" asp-controller="Developer" asp-action="Details" asp-route-id="@Model.Id"
+                   asp-route-page="1"
+                   aria-label="First">
                     <span aria-hidden="true">&laquo;&laquo;</span>
                 </a>
             </li>
-            <li class="page-item @(Model.PaginatedGames.Page == 1 ? "disabled" : "")">
-                <a class="page-link" asp-controller="Developer" asp-action="Details" asp-route-id="@Model.Id" asp-route-page="@Model.PaginatedGames.Page--" aria-label="Previous">
+            <li class="page-item @(Model.Page == 1 ? "disabled" : "")">
+                <a class="page-link" asp-controller="Developer" asp-action="Details" asp-route-id="@Model.Id"
+                   asp-route-page="@previousPage"
+                   aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-            @for (int i = 1; i <= Model.PaginatedGames.TotalPages; i++)
+            @for (int i = Model.Page - 2; i <= Model.TotalPages && i <= Model.Page + 2; i++)
             {
-                <li class="page-item @(i == Model.PaginatedGames.Page ? "active" : "")">
-                    <a class="page-link" asp-controller="Developer" asp-action="Details" asp-route-id="@Model.Id" asp-route-page="@i">@i</a>
-                </li>
+                @if (i > 0)
+                {
+                    <li class="page-item @(i == Model.Page ? "active" : "")">
+                        <a class="page-link" asp-controller="Developer" asp-action="Details" asp-route-id="@Model.Id"
+                           asp-route-page="@i">
+                            @i
+                        </a>
+                    </li>
+                }
             }
-            <li class="page-item @(Model.PaginatedGames.Page == Model.PaginatedGames.TotalPages ? "disabled" : "")">
-                <a class="page-link" asp-controller="Developer" asp-action="Details" asp-route-id="@Model.Id" asp-route-page="@Model.PaginatedGames.Page++" aria-label="Next">
+
+            <li class="page-item @(Model.Page == Model.TotalPages ? "disabled" : "")">
+                <a class="page-link" asp-controller="Developer" asp-action="Details" asp-route-id="@Model.Id"
+                   asp-route-page="@nextPage"
+                   aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
-            <li class="page-item @(Model.PaginatedGames.Page == Model.PaginatedGames.TotalPages ? "disabled" : "")">
-                <a class="page-link" asp-controller="Developer" asp-action="Details" asp-route-id="@Model.Id" asp-route-page="@Model.PaginatedGames.TotalPages" aria-label="Last">
+            <li class="page-item @(Model.Page == Model.TotalPages ? "disabled" : "")">
+                <a class="page-link" asp-controller="Developer" asp-action="Details" asp-route-id="@Model.Id"
+                   asp-route-page="@Model.TotalPages"
+                   aria-label="Last">
                     <span aria-hidden="true">&raquo;&raquo;</span>
                 </a>
             </li>

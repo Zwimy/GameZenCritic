@@ -1,6 +1,6 @@
 ﻿using GameZenCritic.Core.Constants;
 using GameZenCritic.Core.Contracts;
-using GameZenCritic.Core.Extensions;
+using GameZenCritic.Core.Models.Developer;
 using GameZenCritic.Core.Models.Game;
 using Microsoft.AspNetCore.Mvc;
 using static GameZenCritic.Core.Constants.LogicConstants;
@@ -23,17 +23,22 @@ namespace GameZenCritic.Web.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Details(int id, int page = StartPage)
+        [HttpGet]
+        public async Task<IActionResult> Details(DeveloperDetailsQueryViewModel model)
         {
-            var modelBase = await developerService.GetByIdAsync(id);
+            var devInfo = await developerService.GetByIdAsync(model.Id, model.Page);
+            if (devInfo == null)
+            {
+                return BadRequest();
+            }
+            model.Name = devInfo.Name;
+            model.GameRep= devInfo.GameRep;
+            model.LogoLink= devInfo.LogoLink;
+            model.TotalCount = devInfo.TotalCount;
+            model.TotalPages = devInfo.TotalPages;
+            model.Games = devInfo.Games;
 
-            int count = modelBase.Games.Count();
-
-            var paginatedGames = modelBase.Games.OrderBy(g => g.ReleaseDate).Skip((page - StartPage) * PageSize).Take(PageSize);
-
-            modelBase.PaginatedGames = new PaginatedList<GameShortInfoViewModel>(paginatedGames, modelBase.Games.Count(), page, PageSize);
-
-            return View(modelBase);
+            return View(model);
         }
     }
 }

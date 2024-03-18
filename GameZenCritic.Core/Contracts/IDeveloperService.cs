@@ -12,6 +12,6 @@ namespace GameZenCritic.Core.Contracts
         Task <IEnumerable<DeveloperInfoViewModel>> GetAllAsync();
         Task <DeveloperInfoViewModel> GetTopDeveloperInfoAsync ();
 
-        Task<DeveloperDetailsViewModel> GetByIdAsync(int id);
+        Task<DeveloperDetailsQueryViewModel?> GetByIdAsync(int id, int page);
     }
 }
